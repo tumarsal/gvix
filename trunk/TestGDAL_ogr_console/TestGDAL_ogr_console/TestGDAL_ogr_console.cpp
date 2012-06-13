@@ -133,6 +133,12 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	}
 
+	// The OGRLayer returned by OGRDataSource::GetLayerByName() is also 
+	// a reference to an internal layer owned by the OGRDataSource so we don't need to delete it. 
+	// But we do need to delete the datasource in order to close the input file. 
+	// Once again we do this with a custom delete method to avoid special win32 heap issus.
+	OGRDataSource::DestroyDataSource( poDS );
+
 	return 0;
 }
 
