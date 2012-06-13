@@ -109,6 +109,11 @@ int _tmain(int argc, _TCHAR* argv[])
         poGeometry = poFeature->GetGeometryRef();
         if( poGeometry != NULL 
             && wkbFlatten(poGeometry->getGeometryType()) == wkbPoint )
+
+			//The wkbFlatten() macro is used above to convert the type for a wkbPoint25D 
+			//(a point with a z coordinate) into the base 2D geometry type code (wkbPoint). 
+			//For each 2D geometry type there is a corresponding 2.5D type code. 
+			//The 2D and 2.5D geometry cases are handled by the same C++ class, so our code will handle 2D or 3D cases properly.
         {
             OGRPoint *poPoint = (OGRPoint *) poGeometry;
 
@@ -118,6 +123,14 @@ int _tmain(int argc, _TCHAR* argv[])
         {
             printf( "no point geometry\n" );
         } 
+
+		// Note that OGRFeature::GetGeometryRef() returns a pointer to the internal geometry owned by the OGRFeature.
+		// There we don't actually deleted the return geometry. However, the OGRLayer::GetNextFeature() method 
+		// returns a copy of the feature that is now owned by us. So at the end of use we must free the feature.
+		//We could just "delete" it, but this can cause problems in windows builds where the GDAL DLL has a different "heap" from the main program. 
+		//To be on the safe side we use a GDAL function to delete the feature.
+		OGRFeature::DestroyFeature( poFeature );
+
 	}
 
 	return 0;
