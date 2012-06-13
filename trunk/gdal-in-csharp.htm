@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	
+    Gdal in CSharp
+
+</title><link href="../Content/Site.css" rel="stylesheet" type="text/css" /></head>
+<body>
+
+    <div id="wrap">
+        <div id="header">
+            <a href="http://feeds.feedburner.com/BjarteCom" 
+                    title="Subscribe to my feed" 
+                    rel="alternate" 
+                    type="application/rss+xml">
+                <img src="../../Content/rssicon.png" alt="rss" id="rss" />
+            </a>
+            <h1>
+                <a href="/">
+                   Bjarte<span>.com</span>
+                </a>
+            </h1>
+            <div id="subtitle">
+                Thoughs on software process, architecture, design and business in the .NET space.
+            </div>
+        </div>
+        
+       <div id="right">
+            <div class="right-content">
+                
+<h1> Subjects</h1>
+<ul class="tags">
+    
+    <li>
+        <a href="/tag/mvc">mvc</a>
+    </li>
+    
+    <li>
+        <a href="/tag/process">process</a>
+    </li>
+    
+    <li>
+        <a href="/tag/nhibernate">nhibernate</a>
+    </li>
+    
+    <li>
+        <a href="/tag/software">software</a>
+    </li>
+    
+    <li>
+        <a href="/tag/business">business</a>
+    </li>
+    
+    <li>
+        <a href="/tag/html5">html5</a>
+    </li>
+    
+    <li>
+        <a href="/tag/exception">exception</a>
+    </li>
+    
+    <li>
+        <a href="/tag/cucumber">cucumber</a>
+    </li>
+    
+    <li>
+        <a href="/tag/dsl">dsl</a>
+    </li>
+    
+    <li>
+        <a href="/tag/cqrs">cqrs</a>
+    </li>
+    
+    <li>
+        <a href="/tag/ddd">ddd</a>
+    </li>
+    
+    <li>
+        <a href="/tag/mvvm">mvvm</a>
+    </li>
+    
+    <li>
+        <a href="/tag/wpf">wpf</a>
+    </li>
+    
+    <li>
+        <a href="/tag/surface">surface</a>
+    </li>
+    
+    <li>
+        <a href="/tag/lean">lean</a>
+    </li>
+    
+    <li>
+        <a href="/tag/javascript">javascript</a>
+    </li>
+    
+    <li>
+        <a href="/tag/mvp">mvp</a>
+    </li>
+    
+    <li>
+        <a href="/tag/ruby">ruby</a>
+    </li>
+    
+    <li>
+        <a href="/tag/basics">basics</a>
+    </li>
+    
+</ul>
+
+            </div>
+         
+          <div class="right-content">
+            <h1>About me</h1>
+            
+            Bjarte Djuvik Næss, Bergen, Norway.
+            
+            <img src="../../Content/bjartn.jpg" alt="Bjarte Djuvik Næss" width="150" style="padding-top:20px" />
+            
+            <P>I work with development, process and architecture in the .NET space.</P>
+            
+            <p>You can find me on <a href="http://twitter.com/bjartn">twitter</a> any day</p>
+            
+         </div>
+        </div>
+        <div id="page">
+            
+        
+
+<div class="post-date">
+    23
+    Dec
+</div>
+
+<h2>Gdal in CSharp</h2>
+<div class="post-content">
+    <h4>The short story</h4>  <p>You can get a fully working GDAL in .NET (x64) from here: <a href="https://bitbucket.org/bjartn/gdalgonewild">https://bitbucket.org/bjartn/gdalgonewild</a>&#160;</p>  <p>For 32 bits windows you would need to do what I have done, but starting with the 32 bits C assemblies.</p>  <h4>The somewhat longer story</h4>  <p><a href="http://www.gdal.org/">Gdal</a> is a translator library for raster geospatial data formats. It supports reading and writing many raster formats. One of them is GeoTiff, which is why I needed to use GDAL.</p>  <p>GDAL is written in C, but has bindings to many other languages thru SWIG. SWIG is a software development tool that connects programs written in C and C++ with a variety of high-level programming languages.</p>  <p>For the .NET crowd this means that there are some .NET dll’s that talks to the&#160; GDAL C assemblies thru P/Invoke.</p>  <p>The good news is that as a&#160; .NET developer you don’t need to compile the entire GDAL library with the bindings yourself.&#160; The bad news is that it is not straight forward to get it running in .NET (<a href="https://bitbucket.org/bjartn/gdalgonewild">until now</a>).</p>  <p>There are some different places you can get the assemblies needed. One of them is thru installing <a href="http://fwtools.maptools.org/">FWTools</a>, another is by downloading from a build server <a href="http://vbkto.dyndns.org/sdk/">http://vbkto.dyndns.org/sdk/</a> which is what I did.</p>  <p>Both these builds include many files you don’t need. What you *do need* is the dll’s and some data files for proj.4 and GDAL.</p>  <h4>Setting up the environment the hard way</h4>  <p>You also need to set up your environment variables so that GDAL knows where to look for the plugins, the data files and so on. The following environment variables need to be set correctly: PATH, GDAL_DATA,GDAL_DRIVER_PATH&#160; and PROJ_LIB. </p>  <p>If you install FWTools the environment will be set up by running the “C:\Program Files (x86)\FWTools2.4.7\bin\setfwenv.bat”&#160; in a command window. If you use the <a href="http://vbkto.dyndns.org/sdk/">http://vbkto.dyndns.org/sdk/</a> build you can set up the environment using the “SDKShell.bat“ file.</p>  <h4>Setting up the environment the easy way</h4>  <p>We don’t want to set up the environment on every PC we are installing our software on. If we want to have an xcopy deployment of our .NET application we cannot rely on somebody manually setting the environment variables.</p>  <p>I have created a self contained Visual Studio project that runs GDAL without any external dependencies like the environment variables. You can download it at <a href="https://bitbucket.org/bjartn/gdalgonewild">https://bitbucket.org/bjartn/gdalgonewild</a> (x64 only). I created this project by picking and choosing the required DLLs and data files from a x64 build of GDAL found at <a href="http://vbkto.dyndns.org/sdk/">http://vbkto.dyndns.org/sdk/</a>.</p>  <p>I have created a class called <a href="https://bitbucket.org/bjartn/gdalgonewild/src/f8701045ccee/src/GdalGoneWild.Client/GdalEnvironment.cs">GdalEnvironment</a> that is responsible for setting up the GDAL environment.<strike> In addition I have added a “pre-build event” that copies all the required C and .NET assemblies into the bin directory when the application is compiled.</strike> This removes the need for setting up the PATH environment variable. </p>  <p>One little strange thing I noticed was that I was not able to set up the GDAL_DATA environment variable programmatically. So instead I used Gdal.SetConfigOption which overrides the environment variable.</p>  <p>Well. That’s all I can think of right now.</p>
+    
+   <div class="post-share"> 
+        
+
+<a class="twitter-icon" href="http://twitter.com/home?status=%22Gdal+in+CSharp%22+http%3a%2f%2fbjarte.com%3a80%2fpost%2fgdal-in-csharp">
+    <img alt="Share this post Twitter" src="../../Content/tweet-this.png" />
+</a>
+<a  id="fb_share" 
+    title="Share this post on Facebook" 
+    href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fbjarte.com%3a80%2fpost%2fgdal-in-csharp&t=Gdal+in+CSharp">
+F Share
+</a>
+ 
+   </div>
+   
+    
+<div id="disqus_thread">
+</div>
+
+<script type="text/javascript">
+    var disqus_developer = 1;
+</script>
+
+<script type="text/javascript" src="http://disqus.com/forums/bjartn/embed.js"></script>
+ 
+   
+</div>  
+        </div>
+        
+        <div id="footer">
+          
+            <div>
+                <h2>Archive</h2>
+                <p>
+                   Some of my thoughts you will find 
+                    <a href="/Archive">here in the archive</a> .
+                </p>
+            </div>
+        
+            <div>
+                <h2>Motto</h2>
+                <ol>
+                    <li> Love your family</li>
+                    <li> Live your passion</li>
+                    <li> Crush it !</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="../../Content/disqus.js"></script>
+    
+    <script src='http://www.google-analytics.com/ga.js' type='text/javascript'></script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-3276571-4");
+            pageTracker._trackPageview();
+        } 
+        catch (err) {}
+    </script>
+</body>
+</html>
