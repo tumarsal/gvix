@@ -9,6 +9,17 @@
 #include "wmimgvwr.h"
 #include "wmimgvwrDlg.h"
 
+#include "gdal.h"
+#include "gdal_alg.h"
+#include "ogr_srs_api.h"
+#include "cpl_string.h"
+#include "cpl_conv.h"
+#include "cpl_multiproc.h"
+
+#include "gdal_priv.h"
+
+#include "ogrsf_frmts.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
