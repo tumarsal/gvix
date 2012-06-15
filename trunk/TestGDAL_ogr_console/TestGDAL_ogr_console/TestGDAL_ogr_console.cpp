@@ -17,6 +17,9 @@
 //#include "gdal_priv.h"
 //#include "cpl_conv.h" // for CPLMalloc()
 
+//http://www.gisinfo.net/item/item.htm
+//http://openev.sourceforge.net/index.php?page=build-instructions  Building OpenEV (Windows)
+
 void GDALtestAPI();
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -154,9 +157,15 @@ void GDALtestAPI()
 
 	/*Opening the File
 
-	Before opening a GDAL supported raster datastore it is necessary to register drivers. There is a driver for each supported format. Normally this is accomplished with the GDALAllRegister() function which attempts to register all known drivers, including those auto-loaded from .so files using GDALDriverManager::AutoLoadDrivers(). If for some applications it is necessary to limit the set of drivers it may be helpful to review the code from gdalallregister.cpp. Python automatically calls GDALAllRegister() when the gdal module is imported.
+	Before opening a GDAL supported raster datastore it is necessary to register drivers. 
+	There is a driver for each supported format. Normally this is accomplished with the GDALAllRegister() 
+	function which attempts to register all known drivers, including those auto-loaded from .so files 
+	using GDALDriverManager::AutoLoadDrivers(). If for some applications it is necessary to limit the set of 
+	drivers it may be helpful to review the code from gdalallregister.cpp. Python automatically calls GDALAllRegister() 
+	when the gdal module is imported.
 
-	Once the drivers are registered, the application should call the free standing GDALOpen() function to open a dataset, passing the name of the dataset and the access desired (GA_ReadOnly or GA_Update).
+	Once the drivers are registered, the application should call the free standing GDALOpen() function to open a dataset, 
+	passing the name of the dataset and the access desired (GA_ReadOnly or GA_Update).
 
 	In C++: */
 
