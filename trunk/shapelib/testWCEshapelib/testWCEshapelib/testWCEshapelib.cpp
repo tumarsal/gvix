@@ -202,62 +202,62 @@ void resizeGL(int w, int h)
 	glMatrixMode(GL_MODELVIEW);
 }
   
-//void draw()
-//{
-//  
-//	glClear (GL_COLOR_BUFFER_BIT);
+void draw()
+{
+  
+	glClear (GL_COLOR_BUFFER_BIT);
 //	glColor3f (0.0, 0.0, 1.0);
-//	glLoadIdentity ();
-//	
-//	//Render Point Shapefile
+	glLoadIdentity ();
+	
+	//Render Point Shapefile
 //	glColor3f (0.0, 0.0, 1.0);
-//	glEnable(GL_POINT_SMOOTH) ;
-//	glPointSize(5.0);
+	glEnable(GL_POINT_SMOOTH) ;
+	glPointSize(5.0);
 //	glBegin(GL_POINTS);
-//	
-//	for(int i=0; i < (int)vPoints.size();i++)
-//	{
+	
+	for(int i=0; i < (int)vPoints.size();i++)
+	{
 //		glVertex2f(vPoints[i].dX,vPoints[i].dY);
-//	}
-//	
+	}
+	
 //	glEnd();
-//	
-//	//Render Line Shapefile
+	
+	//Render Line Shapefile
 //	glColor3f (0.0, 1.0, 0.0);
-//	for( int i=0; i < (int)vLines.size();i++)
-//	{
-//		
+	for( int i=0; i < (int)vLines.size();i++)
+	{
+		
 //		glBegin(GL_LINE_STRIP);
-//		for(int j=0; j < (int)vLines[i].vPointList.size();j++)
-//		{
+		for(int j=0; j < (int)vLines[i].vPointList.size();j++)
+		{
 //		  glVertex2f(vLines[i].vPointList[j].dX,vLines[i].vPointList[j].dY);
-//	
-//		}
-//		
+	
+		}
+		
 //		glEnd();
-//	}
-//	
-//	//Render Polygon Shapefile
+	}
+	
+	//Render Polygon Shapefile
 //	glColor3f(1.0,0.0, 0.0);
-//	for(int i=0; i < (int)vPolygons.size();i++)
-//	{
+	for(int i=0; i < (int)vPolygons.size();i++)
+	{
 //		glBegin(GL_LINE_LOOP);
-//		for(int j=0; j < (int)vPolygons[i].vPointList.size();j++)
-//		{
+		for(int j=0; j < (int)vPolygons[i].vPointList.size();j++)
+		{
 //			glVertex2f(vPolygons[i].vPointList[j].dX,vPolygons[i].vPointList[j].dY);
-//		}
-//		
+		}
+		
 //		glEnd();
-//	}
-// 
-//   glFlush();
-//}
-// 
-//void paintGL()
-//{
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    draw();
-//}
+	}
+ 
+   glFlush();
+}
+ 
+void paintGL()
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    draw();
+}
 
 
 int WINAPI WinMain(HINSTANCE hInstance,
