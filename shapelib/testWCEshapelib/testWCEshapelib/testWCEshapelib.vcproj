@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\shapelib\ogles-bin-1.0.0\include&quot;"
+				AdditionalIncludeDirectories="&quot;C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\shapelib\ogles-bin-1.0.0\include&quot;;&quot;C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\shapelib\shapelib\shapelib&quot;"
 				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;DEBUG;_WINDOWS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;POCKETPC2003_UI_MODEL"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -67,7 +67,7 @@
 				AdditionalOptions=" /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE"
 				OutputFile="$(OutDir)/testWCEshapelib.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\shapelib\ogles-bin-1.0.0\bin\arm\Debug&quot;;&quot;C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\shapelib\glutes-1.11\Lib\ppcarmv4rel&quot;;../../Lib/PPCARMV4Rel"
+				AdditionalLibraryDirectories="&quot;C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\shapelib\ogles-bin-1.0.0\bin\arm\Debug&quot;;&quot;C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\shapelib\glutes-1.11\Lib\ppcarmv4rel&quot;"
 				DelayLoadDLLs="$(NOINHERIT)"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/testWCEshapelib.pdb"
@@ -202,6 +202,18 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\shpopen.c"
+				>
+				<FileConfiguration
+					Name="Debug|Pocket PC 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -236,6 +248,17 @@
 				>
 			</File>
 			<File
+				RelativePath=".\shapefil.h"
+				>
+				<FileConfiguration
+					Name="Debug|Pocket PC 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\stdafx.h"
 				>
 			</File>
@@ -256,20 +279,6 @@
 			<File
 				RelativePath=".\testWCEshapelibppc.rc"
 				>
-				<FileConfiguration
-					Name="Debug|Pocket PC 2003 (ARMV4)"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Pocket PC 2003 (ARMV4)"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\testWCEshapelibppc.rc2"
