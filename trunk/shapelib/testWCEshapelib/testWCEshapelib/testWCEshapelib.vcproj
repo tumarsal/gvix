@@ -237,6 +237,18 @@
 				RelativePath=".\testWCEshapelib.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\VSMathLib.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Pocket PC 2003 (ARMV4)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -265,6 +277,18 @@
 			<File
 				RelativePath=".\testWCEshapelib.h"
 				>
+			</File>
+			<File
+				RelativePath=".\VSMathLib.h"
+				>
+				<FileConfiguration
+					Name="Debug|Pocket PC 2003 (ARMV4)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter

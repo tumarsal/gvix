@@ -197,10 +197,110 @@ void resizeGL(int w, int h)
 	glViewport (0, 0, (GLsizei) w, (GLsizei) h);
 	glMatrixMode (GL_PROJECTION);
 	glLoadIdentity ();
+
 	//Assign Bounding Box Coordinates of Shapefile to glOrtho()
 	//glOrtho(sBoundingBox.fMinX, sBoundingBox.fMaxX,sBoundingBox.fMinY,sBoundingBox.fMaxY,-1,1);
+
+	// OpenGL ES 2: Who stole all my functions? 
+	// http://igamedev.posterous.com/opengl-es-2-who-stole-all-my-functions
+	// But isn't that a lot of extra work?
+	// Yup, sure is. Until you've built up some reusable code, it's a ton of extra work. 
+	// Hopefully as I write these tutorials you'll get some code that you can use.
+
+	// http://forums.macrumors.com/showthread.php?t=593661
+	//So... most of the functions don't work. glOrtho, glBegin, glEnd, glVertex3f (and 2f), all got errors. 
+	//What would be the proper OpenGL ES functions ...
+
+	// Here, totally free for everyone, is my current graphics engine 
+	// http://www.khronos.org/message_boards/viewtopic.php?f=9&t=3140
+
+	// http://www.khronos.org/opengles/sdk/1.1/docs/man/
+
+	// implementation:
+	// http://www.khronos.org/opengles/documentation/opengles1_0/html/glOrtho.html
+
+	// http://stackoverflow.com/questions/7131037/how-do-you-implement-glortho-for-opengles-2-0-with-or-without-tx-ty-tz-values-f
+	// implement my own glOtho function
+
+	// The glOrtho function multiplies the current matrix by an orthographic matrix.
+	// http://msdn.microsoft.com/en-us/library/windows/desktop/dd373965%28v=vs.85%29.aspx
+	//void WINAPI glOrtho(
+	//  GLdouble left,
+	//  GLdouble right,
+	//  GLdouble bottom,
+	//  GLdouble top,
+	//  GLdouble zNear,
+	//  GLdouble zFar
+	//);
+
+	//http://stackoverflow.com/questions/7131037/how-do-you-implement-glortho-for-opengles-2-0-with-or-without-tx-ty-tz-values-f
+		float left; float right;float bottom; float top;float near; float far;
+
+		float a = 2.0f / (right - left);
+        float b = 2.0f / (top - bottom);
+        float c = 0;//-2.0f / (far - near);
+
+        float tx = - (right + left)/(right - left);
+        float ty = - (top + bottom)/(top - bottom);
+        float tz = 0;//- (far + near)/(far - near);
+
+        float ortho[16] = {
+            a, 0, 0, tx,
+            0, b, 0, ty,
+            0, 0, c, tz,
+            0, 0, 0, 1
+        };
+
+
 	glMatrixMode(GL_MODELVIEW);
 }
+//
+//void ES2Renderer::_applyOrtho(float left, float right,float bottom, float top,float near, float far) const{ 
+//
+//        float a = 2.0f / (right - left);
+//        float b = 2.0f / (top - bottom);
+//        float c = -2.0f / (far - near);
+//
+//        float tx = - (right + left)/(right - left);
+//        float ty = - (top + bottom)/(top - bottom);
+//        float tz = - (far + near)/(far - near);
+//
+//        float ortho[16] = {
+//            a, 0, 0, tx,
+//            0, b, 0, ty,
+//            0, 0, c, tz,
+//            0, 0, 0, 1
+//        };
+//
+//
+//        GLint projectionUniform = glGetUniformLocation(_shaderProgram, "Projection");
+//        glUniformMatrix4fv(projectionUniform, 1, 0, &ortho[0]);
+//
+//}
+//
+//void ES2Renderer::_renderScene()const{
+//    GLfloat vVertices[] = {
+//        0.0f,  5.0f, 0.0f,  
+//        -5.0f, -5.0f, 0.0f,
+//        5.0f, -5.0f,  0.0f};
+//
+//    GLuint positionAttribute = glGetAttribLocation(_shaderProgram, "Position");
+//
+//    glEnableVertexAttribArray(positionAttribute);
+//
+//
+//    glVertexAttribPointer(positionAttribute, 3, GL_FLOAT, GL_FALSE, 0, vVertices);  
+//    glDrawArrays(GL_TRIANGLES, 0, 3);       
+//
+//
+//    glDisableVertexAttribArray(positionAttribute);
+//
+//}
+
+
+
+// http://stackoverflow.com/questions/7131037/how-do-you-implement-glortho-for-opengles-2-0-with-or-without-tx-ty-tz-values-f
+// implement my own glOtho function
   
 void draw()
 {
