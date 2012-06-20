@@ -62,3 +62,12 @@
 // TODO: reference additional headers your program requires here
 
 #include "GLES/glutes.h"
+//#include <GL/glut.h>
+//#include <stdlib.h>
+
+#include "GLES/gl.h"
+ 
+//#include "shapelib\shapefil.h"
+#include "shapefil.h"
+
+#include <vector>
