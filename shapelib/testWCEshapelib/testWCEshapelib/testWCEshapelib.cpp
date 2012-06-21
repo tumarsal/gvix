@@ -1,8 +1,25 @@
 // testWCEshapelib.cpp : Defines the entry point for the application.
 //
 
+// GDI Support for Windows CE
+// http://msdn.microsoft.com/en-us/library/ms903434.aspx
+/*
+
+Windows CE GDI does not support the following features:
+
+    Transformation functions of coordinate space, such as SetMapMode, GetMapMode, SetViewportExt, and SetWindowExt. 
+	Coordinate space is equivalent to device space.
+    World Transform API.
+    MoveTo and LineTo functions.
+
+*/
+
 #include "stdafx.h"
 #include "testWCEshapelib.h"
+
+// VSMathLib - Very Simple Matrix Library
+// http://www.lighthouse3d.com/very-simple-libs/vsml/
+
 
 //Program to Parse ESRI Shapefile and render it in OpenGL
 //Author : Dhulipudi Durga Prasad
@@ -307,8 +324,13 @@ void draw()
 	glEnable(GL_POINT_SMOOTH) ;
 	glPointSize(5.0);
 
+	//Two of the more significant differences between OpenGL ES and OpenGL are the removal of the glBegin ... 
+	//glEnd calling semantics for primitive rendering (in favor of vertex arrays) and the introduction 
+	//of fixed-point data types for vertex coordinates and attributes to better support the 
+	//computational abilities of embedded processors, which often lack a floating point unit (FPU).
+
 	// The glBegin and glend functions delimit the vertices of a primitive or a group of like primitives.
-//	glBegin(GL_POINTS);
+	//glBegin(GL_POINTS);
 	
 	for(int i=0; i < (int)vPoints.size();i++)
 	{
