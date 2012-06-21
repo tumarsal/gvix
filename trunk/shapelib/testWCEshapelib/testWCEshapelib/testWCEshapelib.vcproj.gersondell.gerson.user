@@ -36,7 +36,7 @@
 				DeploymentDevice="E282E6BE-C7C3-4ece-916A-88FB1CF8AF3C"
 			/>
 			<DebuggerTool
-				RemoteExecutable=""
+				RemoteExecutable="Storage Card\testWCEshapelib.exe"
 				Arguments=""
 			/>
 		</Configuration>
