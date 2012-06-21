@@ -36,10 +36,14 @@ INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 #define COUNT_MATRICES 4
 
 /// Enumeration of the matrix types
+///* MatrixMode */
+//#define GL_MODELVIEW                      0x1700
+//#define GL_PROJECTION                     0x1701
+//#define GL_TEXTURE                        0x1702
 enum MatrixTypes{
         MODEL,
         VIEW,
-        PROJECTION,
+        PROJECTION,  // GL_PROJECTION
         AUX0,
         AUX1,
         AUX2,
@@ -49,6 +53,9 @@ enum MatrixTypes{
 /// The storage for matrices
 float mMatrix[COUNT_MATRICES][16];
 //float mCompMatrix[COUNT_COMPUTED_MATRICES][16];
+
+void
+multMatrix(MatrixTypes aType, float *aMatrix);
 
 /** Similar to glOrtho and gluOrtho2D (just leave the
   * last two params blank).
@@ -232,14 +239,22 @@ void initializeGL()
 void resizeGL(int w, int h)
 {
 	if(h<=0) h=1 ;
+
+	//  glViewport defines the area of the window you are using into which you want to draw. 
+	// Here is how to tell OpenGL that you want to use your entire window to draw in: 
 	glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+
+	glMatrixMode (GL_PROJECTION);
+	glLoadIdentity ();
+
 	glMatrixMode (GL_PROJECTION);
 	glLoadIdentity ();
 
 	//Assign Bounding Box Coordinates of Shapefile to glOrtho()
 	// 06-21-2012 Implemented local function glOrtho by Gerson in replacement because of lack in OpenGL ES for WinCE / PPC / WinMob
 	// Original implementation is at OpenGL Win32/x86 for Windows at GL.h in C:\Program Files\Microsoft SDKs\Windows\v6.0A\Include\gl
-	glOrtho(sBoundingBox.fMinX, sBoundingBox.fMaxX,sBoundingBox.fMinY,sBoundingBox.fMaxY,-1,1);
+	//glOrtho(sBoundingBox.fMinX, sBoundingBox.fMaxX,sBoundingBox.fMinY,sBoundingBox.fMaxY,-1,1);
+	glOrthof(sBoundingBox.fMinX, sBoundingBox.fMaxX,sBoundingBox.fMinY,sBoundingBox.fMaxY,-1,1);
 
 	// OpenGL ES 2: Who stole all my functions? 
 	// http://igamedev.posterous.com/opengl-es-2-who-stole-all-my-functions
@@ -264,95 +279,35 @@ void resizeGL(int w, int h)
 
 	// The glOrtho function multiplies the current matrix by an orthographic matrix.
 	// http://msdn.microsoft.com/en-us/library/windows/desktop/dd373965%28v=vs.85%29.aspx
-	//void WINAPI glOrtho(
-	//  GLdouble left,
-	//  GLdouble right,
-	//  GLdouble bottom,
-	//  GLdouble top,
-	//  GLdouble zNear,
-	//  GLdouble zFar
-	//);
 
 	//http://stackoverflow.com/questions/7131037/how-do-you-implement-glortho-for-opengles-2-0-with-or-without-tx-ty-tz-values-f
-		float left; float right;float bottom; float top;float near; float far;
-
-		float a = 2.0f / (right - left);
-        float b = 2.0f / (top - bottom);
-        float c = 0;//-2.0f / (far - near);
-
-        float tx = - (right + left)/(right - left);
-        float ty = - (top + bottom)/(top - bottom);
-        float tz = 0;//- (far + near)/(far - near);
-
-        float ortho[16] = {
-            a, 0, 0, tx,
-            0, b, 0, ty,
-            0, 0, c, tz,
-            0, 0, 0, 1
-        };
-
 
 	glMatrixMode(GL_MODELVIEW);
 }
-//
-//void ES2Renderer::_applyOrtho(float left, float right,float bottom, float top,float near, float far) const{ 
-//
-//        float a = 2.0f / (right - left);
-//        float b = 2.0f / (top - bottom);
-//        float c = -2.0f / (far - near);
-//
-//        float tx = - (right + left)/(right - left);
-//        float ty = - (top + bottom)/(top - bottom);
-//        float tz = - (far + near)/(far - near);
-//
-//        float ortho[16] = {
-//            a, 0, 0, tx,
-//            0, b, 0, ty,
-//            0, 0, c, tz,
-//            0, 0, 0, 1
-//        };
-//
-//
-//        GLint projectionUniform = glGetUniformLocation(_shaderProgram, "Projection");
-//        glUniformMatrix4fv(projectionUniform, 1, 0, &ortho[0]);
-//
-//}
-//
-//void ES2Renderer::_renderScene()const{
-//    GLfloat vVertices[] = {
-//        0.0f,  5.0f, 0.0f,  
-//        -5.0f, -5.0f, 0.0f,
-//        5.0f, -5.0f,  0.0f};
-//
-//    GLuint positionAttribute = glGetAttribLocation(_shaderProgram, "Position");
-//
-//    glEnableVertexAttribArray(positionAttribute);
-//
-//
-//    glVertexAttribPointer(positionAttribute, 3, GL_FLOAT, GL_FALSE, 0, vVertices);  
-//    glDrawArrays(GL_TRIANGLES, 0, 3);       
-//
-//
-//    glDisableVertexAttribArray(positionAttribute);
-//
-//}
 
-
-
-// http://stackoverflow.com/questions/7131037/how-do-you-implement-glortho-for-opengles-2-0-with-or-without-tx-ty-tz-values-f
-// implement my own glOtho function
-  
 void draw()
 {
   
 	glClear (GL_COLOR_BUFFER_BIT);
-//	glColor3f (0.0, 0.0, 1.0);
+
+	// 06-21-2012 by Gerson This function of OpenGL is not supported by mobileplatforms
+	//	glColor3f (0.0, 0.0, 1.0);
+	// The alpha channel is normally used as an opacity channel. 
+	//If a pixel has a value of 0% in its alpha channel, 
+	//it is fully transparent (and, thus, invisible), 
+	//whereas a value of 100% in the alpha channel gives a fully opaque pixel (traditional digital images)
+	glColor4x(0, 0, 1, 1); 
+
 	glLoadIdentity ();
 	
 	//Render Point Shapefile
 //	glColor3f (0.0, 0.0, 1.0);
+	glColor4x(0, 0, 1, 1); 
+
 	glEnable(GL_POINT_SMOOTH) ;
 	glPointSize(5.0);
+
+	// The glBegin and glend functions delimit the vertices of a primitive or a group of like primitives.
 //	glBegin(GL_POINTS);
 	
 	for(int i=0; i < (int)vPoints.size();i++)
@@ -647,7 +602,7 @@ void glOrtho(float left, float right,
 {
     float m[16];
  
-    //setIdentityMatrix(m,4);
+    setIdentityMatrix(m,4);
  
     m[0 * 4 + 0] = 2 / (right - left);
     m[1 * 4 + 1] = 2 / (top - bottom);
@@ -656,7 +611,7 @@ void glOrtho(float left, float right,
     m[3 * 4 + 1] = -(top + bottom) / (top - bottom);
     m[3 * 4 + 2] = -(farp + nearp) / (farp - nearp);
  
-    //multMatrix(PROJECTION, m);
+    multMatrix(PROJECTION, m);
 }
 
 // -----------------------------------------------------
@@ -692,3 +647,72 @@ multMatrixPoint(MatrixTypes aType, float *point, float *res) {
         }
     }
 }
+
+
+// glMultMatrix implementation
+void
+multMatrix(MatrixTypes aType, float *aMatrix)
+{
+ 
+    float *a, *b, res[16];
+    a = mMatrix[aType];
+    b = aMatrix;
+ 
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            res[j*4 + i] = 0.0f;
+            for (int k = 0; k < 4; ++k) {
+                res[j*4 + i] += a[k*4 + i] * b[j*4 + k];
+            }
+        }
+    }
+    memcpy(mMatrix[aType], res, 16 * sizeof(float));
+}
+
+//
+//void ES2Renderer::_applyOrtho(float left, float right,float bottom, float top,float near, float far) const{ 
+//
+//        float a = 2.0f / (right - left);
+//        float b = 2.0f / (top - bottom);
+//        float c = -2.0f / (far - near);
+//
+//        float tx = - (right + left)/(right - left);
+//        float ty = - (top + bottom)/(top - bottom);
+//        float tz = - (far + near)/(far - near);
+//
+//        float ortho[16] = {
+//            a, 0, 0, tx,
+//            0, b, 0, ty,
+//            0, 0, c, tz,
+//            0, 0, 0, 1
+//        };
+//
+//
+//        GLint projectionUniform = glGetUniformLocation(_shaderProgram, "Projection");
+//        glUniformMatrix4fv(projectionUniform, 1, 0, &ortho[0]);
+//
+//}
+//
+//void ES2Renderer::_renderScene()const{
+//    GLfloat vVertices[] = {
+//        0.0f,  5.0f, 0.0f,  
+//        -5.0f, -5.0f, 0.0f,
+//        5.0f, -5.0f,  0.0f};
+//
+//    GLuint positionAttribute = glGetAttribLocation(_shaderProgram, "Position");
+//
+//    glEnableVertexAttribArray(positionAttribute);
+//
+//
+//    glVertexAttribPointer(positionAttribute, 3, GL_FLOAT, GL_FALSE, 0, vVertices);  
+//    glDrawArrays(GL_TRIANGLES, 0, 3);       
+//
+//
+//    glDisableVertexAttribArray(positionAttribute);
+//
+//}
+
+
+// http://stackoverflow.com/questions/7131037/how-do-you-implement-glortho-for-opengles-2-0-with-or-without-tx-ty-tz-values-f
+// implement my own glOtho function
+  
