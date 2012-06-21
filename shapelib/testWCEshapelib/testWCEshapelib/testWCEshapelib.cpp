@@ -334,6 +334,14 @@ void draw()
 	
 	for(int i=0; i < (int)vPoints.size();i++)
 	{
+		// Specifies a vertex.
+		/*
+		The glVertex function commands are used within glBegin/glEnd pairs to specify point, line, and polygon vertices. 
+		The current color, normal, and texture coordinates are associated with the vertex when glVertex is called. 
+		When only x and y are specified, z defaults to 0.0 and w defaults to 1.0. 
+		When x, y, and z are specified, w defaults to 1.0. 
+		Invoking glVertex outside of a glBegin/glEnd pair results in undefined behavior. 
+		*/
 //		glVertex2f(vPoints[i].dX,vPoints[i].dY);
 	}
 	
