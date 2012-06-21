@@ -32,6 +32,45 @@ BOOL			InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 
+/// number of settable matrices
+#define COUNT_MATRICES 4
+
+/// Enumeration of the matrix types
+enum MatrixTypes{
+        MODEL,
+        VIEW,
+        PROJECTION,
+        AUX0,
+        AUX1,
+        AUX2,
+        AUX3
+} ;
+
+/// The storage for matrices
+float mMatrix[COUNT_MATRICES][16];
+//float mCompMatrix[COUNT_COMPUTED_MATRICES][16];
+
+/** Similar to glOrtho and gluOrtho2D (just leave the
+  * last two params blank).
+  *
+  * \param left,right coordinates for the left and right vertical
+  * clipping planes
+  * \param bottom,top coordinates for the bottom and top horizontal
+  * clipping planes
+  * \param nearp,farp distance to the near and far planes
+*/
+void ortho(float left, float right, float bottom, float top,
+                float nearp=-1.0f, float farp=1.0f);
+
+// sets the square matrix mat to the identity matrix,
+// size refers to the number of rows (or columns)
+void
+setIdentityMatrix( float *mat, int size);
+
+// Compute res = M * point
+void
+multMatrixPoint(MatrixTypes aType, float *point, float *res);
+//multMatrixPoint(float *point, float *res);
 
 typedef struct MyPoint2D
 {
@@ -86,12 +125,11 @@ void OpenShapeFile(char* fileName)
 
 
 	//Read Bounding Box of Shapefile
-    sBoundingBox.fMaxX=hSHP->adBoundsMax[0];
-    sBoundingBox.fMaxY=hSHP->adBoundsMax[1];
+    sBoundingBox.fMaxX=(float)hSHP->adBoundsMax[0];
+    sBoundingBox.fMaxY=(float)hSHP->adBoundsMax[1];
 
-    sBoundingBox.fMinX=hSHP->adBoundsMin[0];
+    sBoundingBox.fMinX=(floahSHP->adBoundsMin[0];
     sBoundingBox.fMinY=hSHP->adBoundsMin[1];
-
 
     if(hSHP == NULL) return;
 
@@ -599,4 +637,56 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
     }
     return (INT_PTR)FALSE;
+}
+
+void ortho(float left, float right,
+            float bottom, float top,
+            float nearp, float farp)
+{
+    float m[16];
+ 
+    //setIdentityMatrix(m,4);
+ 
+    m[0 * 4 + 0] = 2 / (right - left);
+    m[1 * 4 + 1] = 2 / (top - bottom);
+    m[2 * 4 + 2] = -2 / (farp - nearp);
+    m[3 * 4 + 0] = -(right + left) / (right - left);
+    m[3 * 4 + 1] = -(top + bottom) / (top - bottom);
+    m[3 * 4 + 2] = -(farp + nearp) / (farp - nearp);
+ 
+    //multMatrix(PROJECTION, m);
+}
+
+// -----------------------------------------------------
+//                      AUX functions
+// -----------------------------------------------------
+ 
+// sets the square matrix mat to the identity matrix,
+// size refers to the number of rows (or columns)
+void
+setIdentityMatrix( float *mat, int size) {
+ 
+    // fill matrix with 0s
+    for (int i = 0; i < size * size; ++i)
+            mat[i] = 0.0f;
+ 
+    // fill diagonal with 1s
+    for (int i = 0; i < size; ++i)
+        mat[i + i * size] = 1.0f;
+}
+
+// Compute res = M * point
+void
+multMatrixPoint(MatrixTypes aType, float *point, float *res) {
+//multMatrixPoint(float *mat, float *point, float *res){
+ 
+    for (int i = 0; i < 4; ++i) {
+ 
+        res[i] = 0.0f;
+ 
+        for (int j = 0; j < 4; j++) {
+ 
+            res[i] += point[j] * mMatrix[aType][j*4 + i];
+        }
+    }
 }
