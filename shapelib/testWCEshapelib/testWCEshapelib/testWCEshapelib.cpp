@@ -548,6 +548,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     PAINTSTRUCT ps;
     HDC hdc;
 
+	wchar_t  temp[] = L"SHP Viewer";
+
     static SHACTIVATEINFO s_sai;
 	
     switch (message) 
@@ -555,6 +557,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         case WM_COMMAND:
             wmId    = LOWORD(wParam); 
             wmEvent = HIWORD(wParam); 
+
             // Parse the menu selections:
             switch (wmId)
             {
@@ -564,6 +567,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 case IDM_OK:
                     SendMessage (hWnd, WM_CLOSE, 0, 0);				
                     break;
+				case ID_HELP_SHPVIEWER:
+					MessageBox(NULL, temp, _T(""), MB_OK);
+
+					int argc; char** argv;
+					//glutInit(&argc, argv);
+					glutInitDisplayMode (GLUT_SINGLE| GLUT_RGB);
+					glutInitWindowSize (600,600);
+					glutCreateWindow ("Render Shapefiles");
+					initializeGL();
+
+					DialogBox(g_hInst, (LPCTSTR)IDD_SHP_VIEWER, hWnd, About);
+					break;
                 default:
                     return DefWindowProc(hWnd, message, wParam, lParam);
             }
