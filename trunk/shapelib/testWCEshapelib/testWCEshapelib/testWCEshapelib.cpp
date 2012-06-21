@@ -343,6 +343,16 @@ void draw()
 		Invoking glVertex outside of a glBegin/glEnd pair results in undefined behavior. 
 		*/
 //		glVertex2f(vPoints[i].dX,vPoints[i].dY);
+
+		//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
+		glEnableClientState (GL_VERTEX_ARRAY);
+		glEnableClientState (GL_COLOR_ARRAY); // enables the color-array.
+		
+		//glVertexPointer (...  // set your vertex-coordinates here..
+		//glColorPointer (...   // set your color-coorinates here..
+
+		//glDrawArrays (... // draw your triangles
+
 	}
 	
 //	glEnd();
@@ -746,3 +756,91 @@ multMatrix(MatrixTypes aType, float *aMatrix)
 // http://stackoverflow.com/questions/7131037/how-do-you-implement-glortho-for-opengles-2-0-with-or-without-tx-ty-tz-values-f
 // implement my own glOtho function
   
+
+/*
+
+http://www.gamedev.net/topic/576574-opengl-to-opengl-es-code/
+
+Hello
+how would be translated this opengl code:
+
+
+glBegin(GL_QUADS);
+
+glTexCoord2f(u1, v1); glVertex2f(sx, sy);
+glTexCoord2f(u2, v1); glVertex2f(sx+sw, sy);
+glTexCoord2f(u2, v2); glVertex2f(sx+sw, sy+sh);
+glTexCoord2f(u1, v2); glVertex2f(sx, sy+sh);
+
+glEnd();
+
+into OpenGL ES ? ( i know that there si no begin/end on ES)
+
+hello
+not at all, nothing to see with VBO.
+i think this shall work:
+GL_FLOAT vertex2[]={sx, sy, sx+sw, sy, sx+sw, sy+sh, sx, sy+sh};
+GL_FLOAT textureCoor2[]={u1,v1, u2, v1, u2,v2, u1,v2};
+
+glEnableClientState(GL_VERTEX_ARRAY);
+glEnableClientState(GL_TEXTURE_COOR_ARRAY);
+
+glVertexPointer(2, GL_FLOAT, 0, &vertex2);
+glTexCoordPointer( 2, GL_FLOAT, 0, &textureCoor2);
+
+glDrawArrays(GL_QUADS, 0, 4);
+
+will try, it is actually better than the begin end for sure. 
+
+Hi,
+
+glDrawArrays and glDrawElements work fine, but VBO is another way to do it, and more efficiently.
+
+Here is an article about it (in French s'il vous plait ;)) :
+
+http://www.game-lab....=showtut&id=244
+
+Bye 
+
+The way I see the difference between glBegin/End, glDraw and VBO :
+
+- glBegin / glEnd : A lot of function calls is needed
+
+- glDraw : It is the same as glBegin, but reduce considerably the number of function calls
+
+- VBO : Reduce bus activity (only if your geometry is static maybe ? because if it is dynamic you'll have to transfer data each time)
+
+I've seen some interesting bechmarks about it, for geometry composed of hundreds of thousand (and more) polygons, you can esperate a ratio of 3 to 4 time faster.
+
+However, for a lower count of polygons you will not see great performance differences. 
+
+*/
+
+
+/*
+
+
+http://forum.nevercorner.net/viewtopic.php?id=2302
+
+#if !defined(HAVE_GLES)
+  glBegin(GL_QUADS);
+  glVertex2f(-10,-10);
+  glVertex2f(10,-10);
+  glVertex2f(10,10);
+  glVertex2f(-10,10);
+  glEnd();
+#else
+    GLfloat q3[] = {
+        -10,-10,
+        10,-10,
+        10,10,
+        -10,10
+    };
+ 
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(2, GL_FLOAT, 0, q3);
+    glDrawArrays(GL_TRIANGLE_FAN,0,4);
+    glDisableClientState(GL_VERTEX_ARRAY);
+#endif
+
+	*/
