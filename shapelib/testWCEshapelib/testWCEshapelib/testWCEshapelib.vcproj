@@ -65,6 +65,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE"
+				AdditionalDependencies="ug.lib codegen.lib libGLES_CM.lib glutes_static.lib glutes.lib"
 				OutputFile="$(OutDir)/testWCEshapelib.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\shapelib\ogles-bin-1.0.0\bin\arm\Debug&quot;;&quot;C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\shapelib\glutes-1.11\Lib\ppcarmv4rel&quot;"
