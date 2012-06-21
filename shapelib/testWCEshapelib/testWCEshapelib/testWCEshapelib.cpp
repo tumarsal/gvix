@@ -331,6 +331,10 @@ void draw()
 
 	// The glBegin and glend functions delimit the vertices of a primitive or a group of like primitives.
 	//glBegin(GL_POINTS);
+
+	GLfloat vPoints_OpenGLMobile[250];
+
+	int j=0;
 	
 	for(int i=0; i < (int)vPoints.size();i++)
 	{
@@ -344,16 +348,24 @@ void draw()
 		*/
 //		glVertex2f(vPoints[i].dX,vPoints[i].dY);
 
-		//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
-		glEnableClientState (GL_VERTEX_ARRAY);
-		glEnableClientState (GL_COLOR_ARRAY); // enables the color-array.
-		
-		//glVertexPointer (...  // set your vertex-coordinates here..
-		//glColorPointer (...   // set your color-coorinates here..
+		// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+		vPoints_OpenGLMobile[j++]=vPoints[i].dX;
+		vPoints_OpenGLMobile[j++]=vPoints[i].dY;
 
-		//glDrawArrays (... // draw your triangles
+		// 06-21-2012 by Gerson - END of porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
 
 	}
+
+	// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+	//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
+	//glEnableClientState (GL_VERTEX_ARRAY);
+	//glEnableClientState (GL_COLOR_ARRAY); // enables the color-array.
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glVertexPointer(2, GL_FLOAT, 0, vPoints_OpenGLMobile); // set your vertex-coordinates here..
+	//glColorPointer (...   // set your color-coordinates here..
+	glDrawArrays(GL_TRIANGLE_FAN,0,(int)vPoints.size());
+	glDisableClientState(GL_VERTEX_ARRAY);
 	
 //	glEnd();
 	
@@ -844,3 +856,32 @@ http://forum.nevercorner.net/viewtopic.php?id=2302
 #endif
 
 	*/
+
+	// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+	//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
+	//#if !defined(HAVE_GLES)
+	#if defined(HAVE_GLES)
+	  glBegin(GL_QUADS);
+	  glVertex2f(-10,-10);
+	  glVertex2f(10,-10);
+	  glVertex2f(10,10);
+	  glVertex2f(-10,10);
+	  glEnd();
+	//#else
+		GLfloat q3[] = {
+			-10,-10,
+			10,-10,
+			10,10,
+			-10,10
+		};
+	 
+		//glEnableClientState(GL_VERTEX_ARRAY);
+		//glVertexPointer(2, GL_FLOAT, 0, q3);
+		//glDrawArrays(GL_TRIANGLE_FAN,0,4);
+		//glDisableClientState(GL_VERTEX_ARRAY);		
+		
+		//glVertexPointer (...  // set your vertex-coordinates here..
+		//glColorPointer (...   // set your color-coorinates here..
+
+		//glDrawArrays (... // draw your triangles
+	#endif
