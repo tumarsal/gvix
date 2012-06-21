@@ -59,7 +59,7 @@ float mMatrix[COUNT_MATRICES][16];
   * clipping planes
   * \param nearp,farp distance to the near and far planes
 */
-void ortho(float left, float right, float bottom, float top,
+void glOrtho(float left, float right, float bottom, float top,
                 float nearp=-1.0f, float farp=1.0f);
 
 // sets the square matrix mat to the identity matrix,
@@ -128,8 +128,8 @@ void OpenShapeFile(char* fileName)
     sBoundingBox.fMaxX=(float)hSHP->adBoundsMax[0];
     sBoundingBox.fMaxY=(float)hSHP->adBoundsMax[1];
 
-    sBoundingBox.fMinX=(floahSHP->adBoundsMin[0];
-    sBoundingBox.fMinY=hSHP->adBoundsMin[1];
+    sBoundingBox.fMinX=(float)hSHP->adBoundsMin[0];
+    sBoundingBox.fMinY=(float)hSHP->adBoundsMin[1];
 
     if(hSHP == NULL) return;
 
@@ -237,7 +237,9 @@ void resizeGL(int w, int h)
 	glLoadIdentity ();
 
 	//Assign Bounding Box Coordinates of Shapefile to glOrtho()
-	//glOrtho(sBoundingBox.fMinX, sBoundingBox.fMaxX,sBoundingBox.fMinY,sBoundingBox.fMaxY,-1,1);
+	// 06-21-2012 Implemented local function glOrtho by Gerson in replacement because of lack in OpenGL ES for WinCE / PPC / WinMob
+	// Original implementation is at OpenGL Win32/x86 for Windows at GL.h in C:\Program Files\Microsoft SDKs\Windows\v6.0A\Include\gl
+	glOrtho(sBoundingBox.fMinX, sBoundingBox.fMaxX,sBoundingBox.fMinY,sBoundingBox.fMaxY,-1,1);
 
 	// OpenGL ES 2: Who stole all my functions? 
 	// http://igamedev.posterous.com/opengl-es-2-who-stole-all-my-functions
@@ -639,7 +641,7 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     return (INT_PTR)FALSE;
 }
 
-void ortho(float left, float right,
+void glOrtho(float left, float right,
             float bottom, float top,
             float nearp, float farp)
 {
