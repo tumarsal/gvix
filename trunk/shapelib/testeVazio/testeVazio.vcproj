@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="testeVazio"
+	Name="testeOpenGL_ES"
 	ProjectGUID="{42244BFC-26A4-41EA-A880-5992D60151C1}"
 	RootNamespace="testeVazio"
 	Keyword="Win32Proj"
