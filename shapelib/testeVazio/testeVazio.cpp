@@ -384,8 +384,6 @@ void draw()
 	//Render Line Shapefile
 	//glColor3f (0.0, 1.0, 0.0);
 	glColor4x(0, 0, 1, 0);
-	//glColor3f (0.0, 0.0, 1.0); 
-	//glColor4x(0, 0, 1, 1);
 
 	for( int i=0; i < (int)vLines.size();i++)
 	{
