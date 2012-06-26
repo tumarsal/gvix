@@ -66,7 +66,7 @@
 				Name="VCLinkerTool"
 				UseUnicodeResponseFiles="true"
 				AdditionalOptions=" /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE /VERBOSE"
-				AdditionalDependencies="libGLES_CM.lib shapelib_ce2.lib glutes.lib"
+				AdditionalDependencies="libGLES_CM.lib shapelib_ce2.lib "
 				OutputFile="$(OutDir)/testeVazio.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(InputDir)\lib"
