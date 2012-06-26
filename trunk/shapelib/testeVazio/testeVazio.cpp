@@ -167,7 +167,7 @@ void OpenShapeFile(char* fileName)
     sBoundingBox.fMinX=(float)hSHP->adBoundsMin[0];
     sBoundingBox.fMinY=(float)hSHP->adBoundsMin[1];
 
-    if(hSHP == NULL) return;
+    if(hSHP == NULL) return;  
 
 	//Point Shapefile
     if(hSHP->nShapeType == SHPT_POINT)
