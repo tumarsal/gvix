@@ -461,7 +461,7 @@ void draw()
 //		glEnd();
 	}
  
-//   glFlush();
+    glFlush();
 }
 
 void paintGL()
