@@ -6,7 +6,6 @@
 #define IDC_TESTWCESHAPELIB             2
 #define IDI_TESTWCESHAPELIB             101
 #define IDR_MENU                        102
-#define IDD_SHP_VIEWER                  102
 #define IDS_OK                          103
 #define IDS_HELP                        104
 #define IDD_ABOUTBOX                    105
@@ -18,7 +17,6 @@
 #define IDM_OK                          40000
 #define IDM_HELP                        40001
 #define IDM_HELP_ABOUT                  40002
-#define IDC_STATIC                      -1
 
 // Next default values for new objects
 // 
