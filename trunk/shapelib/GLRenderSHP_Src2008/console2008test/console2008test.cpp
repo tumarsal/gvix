@@ -1,6 +1,19 @@
 // console2008test.cpp : Defines the entry point for the console application.
 //
 
+// GDI Support for Windows CE
+// http://msdn.microsoft.com/en-us/library/ms903434.aspx
+/*
+
+Windows CE GDI does not support the following features:
+
+    Transformation functions of coordinate space, such as SetMapMode, GetMapMode, SetViewportExt, and SetWindowExt. 
+	Coordinate space is equivalent to device space.
+    World Transform API.
+    MoveTo and LineTo functions.
+
+*/
+
 #include "stdafx.h"
 
 //Program to Parse ESRI Shapefile and render it in OpenGL
@@ -182,11 +195,18 @@ void initializeGL()
 void resizeGL(int w, int h)
 {
 	if(h<=0) h=1 ;
+
+	//  glViewport defines the area of the window you are using into which you want to draw. 
+	// Here is how to tell OpenGL that you want to use your entire window to draw in: 
 	glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+
 	glMatrixMode (GL_PROJECTION);
 	glLoadIdentity ();
+
 	//Assign Bounding Box Coordinates of Shapefile to glOrtho()
 	glOrtho(sBoundingBox.fMinX, sBoundingBox.fMaxX,sBoundingBox.fMinY,sBoundingBox.fMaxY,-1,1);
+	//glOrthof(sBoundingBox.fMinX, sBoundingBox.fMaxX,sBoundingBox.fMinY,sBoundingBox.fMaxY,-1,1);
+
 	glMatrixMode(GL_MODELVIEW);
 }
   
