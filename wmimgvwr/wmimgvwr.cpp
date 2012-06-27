@@ -67,6 +67,12 @@ BOOL CWmimgvwrApp::InitInstance()
 
 	m_pMainWnd = lpDlg;
 
+	// http://www.gdal.org/ogr/ogr_apitut.html
+
+	//Initially it is necessary to register all the format drivers that are desired. 
+	// This is normally accomplished by calling OGRRegisterAll() which registers all format drivers built into GDAL/OGR.
+	//OGRRegisterAll();
+
 	lpDlg->DoModal();
 
 	return FALSE;

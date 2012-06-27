@@ -9,6 +9,17 @@
 #include "wmimgvwr.h"
 #include "wmimgvwrDlg.h"
 
+#include "gdal.h"
+#include "gdal_alg.h"
+#include "ogr_srs_api.h"
+#include "cpl_string.h"
+#include "cpl_conv.h"
+#include "cpl_multiproc.h"
+
+#include "gdal_priv.h"
+
+#include "ogrsf_frmts.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -51,7 +62,13 @@ END_MESSAGE_MAP()
 
 BOOL CWmimgvwrDlg::OnInitDialog()
 {
-	CDialog::OnInitDialog();
+	CDialog::OnInitDialog();	
+
+	// http://www.gdal.org/ogr/ogr_apitut.html
+
+	//Initially it is necessary to register all the format drivers that are desired. 
+	// This is normally accomplished by calling OGRRegisterAll() which registers all format drivers built into GDAL/OGR.
+	OGRRegisterAll();
 
    // *** SELECT IMAGE - BEGIN
    if ( !vg_cmd_line.GetLength() ) 
