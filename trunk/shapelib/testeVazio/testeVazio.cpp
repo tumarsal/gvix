@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "testeVazio.h"
 
-//#include "GLES/glutes.h"
+#include "GLES/glutes.h"
 //#include <GL/glut.h>
 
 #include "GLES/gl.h"
@@ -485,10 +485,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//glutInitDisplayMode (GLUT_SINGLE| GLUT_RGB);
 	//glutInitWindowSize (600,600);
 	//glutCreateWindow ("Render Shapefiles");
-	initializeGL();
+	
+	//initializeGL();
 
 	// C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\Arquivos SHP ArcGis
-	OpenShapeFile("C:\\proj\\Lifeware\\clientes\\Vix\\implementacao\\Arquivos SHP ArcGis\\Arquivos SHP ArcGis\\cs_quadra_area.shp");//Line Shapefile
+	//OpenShapeFile("C:\\proj\\Lifeware\\clientes\\Vix\\implementacao\\Arquivos SHP ArcGis\\Arquivos SHP ArcGis\\cs_quadra_area.shp");//Line Shapefile
 		
 	//glutReshapeFunc (resizeGL);
 	//glutDisplayFunc (paintGL);
