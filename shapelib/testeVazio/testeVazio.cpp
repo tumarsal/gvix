@@ -342,9 +342,12 @@ void draw()
 	// The glBegin and glend functions delimit the vertices of a primitive or a group of like primitives.
 	//glBegin(GL_POINTS);
 
+	// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+	//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
 	GLfloat vPoints_OpenGLMobile[250];
 
 	int j=0;
+	// end 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
 	
 	for(int i=0; i < (int)vPoints.size();i++)
 	{
@@ -385,6 +388,13 @@ void draw()
 	//glColor3f (0.0, 1.0, 0.0);
 	glColor4x(0, 0, 1, 0);
 
+	// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+	//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
+	GLfloat vPoints_OpenGLMobile2[250];
+
+	j=0;
+	// end 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+
 	for( int i=0; i < (int)vLines.size();i++)
 	{
 		
@@ -395,7 +405,7 @@ void draw()
 	
 		}
 		
-////		glEnd();
+//		glEnd();
 	}
 	
 	//Render Polygon Shapefile

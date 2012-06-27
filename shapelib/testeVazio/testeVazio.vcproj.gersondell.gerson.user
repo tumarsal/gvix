@@ -36,7 +36,7 @@
 				DeploymentDevice="E282E6BE-C7C3-4ece-916A-88FB1CF8AF3C"
 			/>
 			<DebuggerTool
-				RemoteExecutable=""
+				RemoteExecutable="%CSIDL_PROGRAM_FILES%\testeOpenGL_ES\testeVazio.exe"
 				Arguments=""
 			/>
 		</Configuration>
