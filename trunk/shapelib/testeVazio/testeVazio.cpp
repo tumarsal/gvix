@@ -345,8 +345,7 @@ void draw()
 	// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
 	//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
 	GLfloat vPoints_OpenGLMobile[250];
-
-	int j=0;
+	int vPoints_count=0;
 	// end 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
 	
 	for(int i=0; i < (int)vPoints.size();i++)
@@ -362,9 +361,8 @@ void draw()
 		//glVertex2f(vPoints[i].dX,vPoints[i].dY);
 
 		// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
-		vPoints_OpenGLMobile[j++]=(GLfloat)vPoints[i].dX;
-		vPoints_OpenGLMobile[j++]=(GLfloat)vPoints[i].dY;
-
+		vPoints_OpenGLMobile[vPoints_count++]=(GLfloat)vPoints[i].dX;
+		vPoints_OpenGLMobile[vPoints_count++]=(GLfloat)vPoints[i].dY;
 		// 06-21-2012 by Gerson - END of porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
 
 	}
@@ -386,39 +384,81 @@ void draw()
 	
 	//Render Line Shapefile
 	//glColor3f (0.0, 1.0, 0.0);
-	glColor4x(0, 0, 1, 0);
-
 	// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
-	//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
-	GLfloat vPoints_OpenGLMobile2[250];
-
-	j=0;
+	glColor4x(0, 0, 1, 0);
 	// end 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
 
 	for( int i=0; i < (int)vLines.size();i++)
 	{
+
+		// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+		//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
+		int vLines_OpenGLMobile[250];
+		int vLines_count=0;
+		// end 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
 		
 //		glBegin(GL_LINE_STRIP);
 		for(int j=0; j < (int)vLines[i].vPointList.size();j++)
 		{
-		  //glVertex2f(vLines[i].vPointList[j].dX,vLines[i].vPointList[j].dY);
+		    //glVertex2f(vLines[i].vPointList[j].dX,vLines[i].vPointList[j].dY);
+
+			// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+			vLines_OpenGLMobile[vLines_count++]=(int)vLines[i].vPointList[j].dX;
+			vLines_OpenGLMobile[vLines_count++]=(int)vLines[i].vPointList[j].dY;
+			// 06-21-2012 by Gerson - END of porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
 	
 		}
+
+		// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+		//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glVertexPointer(2, GL_FLOAT, 0, vLines_OpenGLMobile); // set your vertex-coordinates here..
+		//glColorPointer (...   // set your color-coordinates here..
+		glDrawArrays(GL_TRIANGLE_FAN,0,vLines_count);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		// END 06-21-2012 by Gerson - END of porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
 		
 //		glEnd();
-	}
+	}	
 	
 	//Render Polygon Shapefile
 	//glColor3f(1.0,0.0, 0.0);
+	// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+	glColor4x(1, 0, 0, 0);
+	// end 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+
+
 	for(int i=0; i < (int)vPolygons.size();i++)
 	{
-////		glBegin(GL_LINE_LOOP);
+
+		// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+		//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
+		int vPolygons_OpenGLMobile[250];
+		int vPolygons_count=0;
+		// end 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+
+//		glBegin(GL_LINE_LOOP);
 		for(int j=0; j < (int)vPolygons[i].vPointList.size();j++)
 		{
 			//glVertex2f(vPolygons[i].vPointList[j].dX,vPolygons[i].vPointList[j].dY);
+
+			// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+			vPolygons_OpenGLMobile[vPolygons_count++]=(int)vPolygons[i].vPointList[j].dY;
+			vPolygons_OpenGLMobile[vPolygons_count++]=(int)vPolygons[i].vPointList[j].dX;
+			// 06-21-2012 by Gerson - END of porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+
 		}
-//		
-////		glEnd();
+
+		// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+		//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glVertexPointer(2, GL_FLOAT, 0, vPolygons_OpenGLMobile); // set your vertex-coordinates here..
+		//glColorPointer (...   // set your color-coordinates here..
+		glDrawArrays(GL_TRIANGLE_FAN,0,vPolygons_count);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		// END 06-21-2012 by Gerson - END of porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+		
+//		glEnd();
 	}
  
 //   glFlush();
