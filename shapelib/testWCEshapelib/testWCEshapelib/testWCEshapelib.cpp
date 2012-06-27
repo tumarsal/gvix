@@ -577,7 +577,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					glutCreateWindow ("Render Shapefiles");
 					initializeGL();
 
-					DialogBox(g_hInst, (LPCTSTR)IDD_SHP_VIEWER, hWnd, About);
+					//DialogBox(g_hInst, (LPCTSTR)IDD_SHP_VIEWER, hWnd, About);
 					break;
                 default:
                     return DefWindowProc(hWnd, message, wParam, lParam);
