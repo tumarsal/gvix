@@ -1,6 +1,9 @@
 // testeVazio.cpp : Defines the entry point for the application.
 //
 
+// http://www.codeproject.com/Articles/32035/Rendering-Shapefile-in-OpenGL
+// Rendering Shapefile in OpenGL
+
 #include "stdafx.h"
 #include "testeVazio.h"
 
@@ -475,6 +478,24 @@ int WINAPI WinMain(HINSTANCE hInstance,
                    LPTSTR    lpCmdLine,
                    int       nCmdShow)
 {
+
+	// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+	//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
+	//glutInit(&argc, argv);
+	//glutInitDisplayMode (GLUT_SINGLE| GLUT_RGB);
+	//glutInitWindowSize (600,600);
+	//glutCreateWindow ("Render Shapefiles");
+	initializeGL();
+
+	// C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\Arquivos SHP ArcGis
+	OpenShapeFile("C:\\proj\\Lifeware\\clientes\\Vix\\implementacao\\Arquivos SHP ArcGis\\Arquivos SHP ArcGis\\cs_quadra_area.shp");//Line Shapefile
+		
+	//glutReshapeFunc (resizeGL);
+	//glutDisplayFunc (paintGL);
+	//glutMainLoop();
+	// 06-21-2012 by Gerson - porting OpenGL code to OpenGL-ES for MS Mobile platforms (WCE, PPC and Win Mobile)
+	//http://stackoverflow.com/questions/835903/opengl-to-opengl-es-changing-color-of-triangles-in-a-strip
+
 	MSG msg;
 
 	// Perform application initialization:
