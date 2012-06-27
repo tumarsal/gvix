@@ -76,6 +76,41 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Release|STANDARDSDK_500 (ARMV4I)"
+			>
+			<DebugSettings
+				Command="$(TargetPath)"
+				WorkingDirectory=""
+				CommandArguments=""
+				Attach="false"
+				DebuggerType="3"
+				Remote="1"
+				RemoteMachine="GERSONDELL"
+				RemoteCommand=""
+				HttpUrl=""
+				PDBPath=""
+				SQLDebugging=""
+				Environment=""
+				EnvironmentMerge="true"
+				DebuggerFlavor=""
+				MPIRunCommand=""
+				MPIRunArguments=""
+				MPIRunWorkingDirectory=""
+				ApplicationCommand=""
+				ApplicationArguments=""
+				ShimCommand=""
+				MPIAcceptMode=""
+				MPIAcceptFilter=""
+			/>
+			<DeploymentTool
+				DeploymentDevice="81551346-886F-43a2-B707-A91FAE1B33A7"
+			/>
+			<DebuggerTool
+				RemoteExecutable=""
+				Arguments=""
+			/>
+		</Configuration>
+		<Configuration
 			Name="Debug|Smartphone 2003 (ARMV4)"
 			>
 			<DebugSettings
@@ -138,10 +173,45 @@
 				MPIAcceptFilter=""
 			/>
 			<DeploymentTool
-				DeploymentDevice="BD0CC567-F6FD-4ca3-99D2-063EFDFC0A39EF64D70E-4547-4b10-A600-951D9EC67647"
+				DeploymentDevice="E282E6BE-C7C3-4ece-916A-88FB1CF8AF3C"
 			/>
 			<DebuggerTool
 				RemoteExecutable="%CSIDL_PROGRAM_FILES%\wmimgvwr\wmimgvwr.exe"
+				Arguments=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|STANDARDSDK_500 (ARMV4I)"
+			>
+			<DebugSettings
+				Command="$(TargetPath)"
+				WorkingDirectory=""
+				CommandArguments=""
+				Attach="false"
+				DebuggerType="3"
+				Remote="1"
+				RemoteMachine="GERSONDELL"
+				RemoteCommand=""
+				HttpUrl=""
+				PDBPath=""
+				SQLDebugging=""
+				Environment=""
+				EnvironmentMerge="true"
+				DebuggerFlavor=""
+				MPIRunCommand=""
+				MPIRunArguments=""
+				MPIRunWorkingDirectory=""
+				ApplicationCommand=""
+				ApplicationArguments=""
+				ShimCommand=""
+				MPIAcceptMode=""
+				MPIAcceptFilter=""
+			/>
+			<DeploymentTool
+				DeploymentDevice="81551346-886F-43a2-B707-A91FAE1B33A7"
+			/>
+			<DebuggerTool
+				RemoteExecutable=""
 				Arguments=""
 			/>
 		</Configuration>
