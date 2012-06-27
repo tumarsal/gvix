@@ -1,0 +1,1478 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html>
+<head>
+	<title>Rendering Shapefile in OpenGL - CodeProject</title> 
+	<link type="text/css" rel="stylesheet" href="http://s.codeproject.com/App_Themes/Std/Css/CodeProject.min.css?dt=2.5.120620.1">
+
+	
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Description" content="Rendering ESRI Shapefiles(.shp)  using OpenGL; Author: Durga Prasad Dhulipudi; Updated: 29 Dec 2008; Section: OpenGL; Chapter: Multimedia; Updated: 29 Dec 2008" />
+<meta name="Keywords" content="VC6, VC7, VC7.1, VC8.0, WinXP, VS2005, C++, C++/CLI, C, Windows, Win32, Visual-Studio, MFC, GDI, GDI+, OpenGL, Advanced,OpenGL,Multimedia,Free source code, tutorials" />
+<meta name="Author" content="Durga Prasad Dhulipudi" />
+<meta name="Rating" content="General" />
+<meta name="Robots" content="index, follow, NOODP" />
+<meta name="Revisit-After" content="1 days" />
+<meta name="application-name" content="The Code Project" />
+
+<meta name="msapplication-navbutton-color" content="#FF9900" />
+<meta name="msapplication-tooltip" content="Your Development Resource." />
+<meta name="msapplication-starturl" content="http://www.codeproject.com/?pinned=true" />
+<meta name="msapplication-task" content="name=Homepage;action-uri=http://www.codeproject.com/;icon-uri=http://www.codeproject.com/favico.ico" />
+<meta name="msapplication-task" content="name=Latest Articles;action-uri=http://www.codeproject.com/script/articles/Latest.aspx;icon-uri=http://www.codeproject.com/favico.ico" />
+<meta name="msapplication-task" content="name=Questions and Answers;action-uri=http://www.codeproject.com/script/Answers/;icon-uri=http://www.codeproject.com/favico.ico" />
+<meta name="msapplication-task" content="name=The Lounge;action-uri=http://www.codeproject.com/Lounge.aspx;icon-uri=http://www.codeproject.com/favico.ico" />
+
+<link rel="dns-prefetch" href="//ajax.googleapis.com" /> 
+<link rel="canonical" href="/Articles/32035/Rendering-Shapefile-in-OpenGL" />
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - MFC/C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - VB.NET" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=6" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Mobile" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=18" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - ASP.NET" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=4" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx" />
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml" />
+
+	<base target="_top" />
+	<link rel="icon" href="/favicon.ico" type="image/ico" >
+<link rel="shortcut icon" href="/favicon.ico"  type="image/ico" >
+<link rel="apple-touch-icon" href="/images/FavIcon-Apple.png" type="image/png" >
+<script type="text/javascript" language="Javascript">//<![CDATA[
+if(top!=self && !/https?:\/\/([a-zA-Z]+\.)?facebook.com\//gi.test(top.location.href))top.location.href=location.href; if(typeof(DemoUrl)!='undefined')document.write(unescape('%3Cme')+'ta http'+'-equiv="re'+'fresh" con'+'tent="1;url='+DemoUrl+unescape('"%3CE'));
+forumDir = '/script/Forums/';
+staticServer = 'http://s.codeproject.com';
+allowModeration = false;
+allowRating = true;
+var smoothScroll = false;
+Selected        = -1;
+oldTitle        = document.title;
+minMessageScore = 1;
+minMessageScore = 5;
+abuseScore      = -2;
+spamScore       = -1;
+
+
+//]]>
+</script>
+
+	
+<script type="text/javascript">
+  var _comscore = _comscore || [];
+  _comscore.push({ c1: "2", c2: "13507173" });
+  (function() {
+	var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+	s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+	el.parentNode.insertBefore(s, el);
+  })();
+</script>
+<noscript>
+  <img src="http://b.scorecardresearch.com/p?c1=2&c2=13507173&cv=2.0&cj=1" id="ctl00_Auditing_ComScore" />
+</noscript>
+
+
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-1735123-1']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setDomainName', 'www.codeproject.com']);
+	_gaq.push(['_setSessionTimeout', '1200']); 
+
+	(function () {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})(); 
+</script>
+
+
+</head>	
+
+<body class="firefox firefox13">
+
+
+
+
+<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="/Images/t.gif" /></a>
+
+
+<div class="page-background">
+	<div id="A" class="container-content">
+
+		
+		
+
+		
+
+		
+		
+
+<div class="container nav-memberbar clearfix">
+	<div class="member-stats float-left">8,981,504 members and growing! (70,051 online)</div>
+	<div class="float-left"></div>
+
+	<div class="float-right">
+		&nbsp;&nbsp;
+	</div>
+
+	<div class="float-right">
+		<span id="ctl00_MemberMenu_CurRat" class="tooltip">
+				<a id="ctl00_MemberMenu_MyProfile" href="/script/Membership/View.aspx?mid=461059">Gerson Freire</a><img src="/Images/arrow-down-16.png" 
+					style="width:16px;height:16px;vertical-align:bottom" />
+				<div class="tooltip-flyout" style="width:110px !important">
+					<div><a id="ctl00_MemberMenu_MySettingsNonSSL" href="http://www.codeproject.com/script/Membership/Modify.aspx">My Settings</a></div>
+					<div><a id="ctl00_MemberMenu_MySettings" href="https://www.codeproject.com/script/Membership/Modify.aspx"><img src="/images/secure.png" width="13px" height="14px"  style="vertical-align:middle;border:0">My Settings (SSL)</a></div>
+					<div><a id="ctl00_MemberMenu_MyContacts" href="/script/Membership/ListContacts.aspx">My Contact info</a></div>
+					<div><a id="ctl00_MemberMenu_MyBookmarks" href="/script/Bookmarks/List.aspx?obtid=2">My Bookmarks</a></div>
+					
+					<div><a id="ctl00_MemberMenu_MyCodeProject" href="/script/Membership/MyWatchedItems.aspx">My Watched Items</a></div>
+					<div><a id="ctl00_MemberMenu_MyArticles" href="/script/Articles/MemberArticles.aspx?amid=461059">My Articles</a></div>
+					<div><a id="ctl00_MemberMenu_MyMessages" href="/script/Forums/Messages.aspx?fmid=461059">My Messages</a></div>
+					<div><a id="ctl00_MemberMenu_MyQuestions" href="/script/Answers/MemberPosts.aspx?tab=questions&amp;mid=461059&amp;showall=True">My Questions</a></div>
+					<div><a id="ctl00_MemberMenu_MyAnswers" href="/script/Answers/MemberPosts.aspx?tab=answers&amp;mid=461059&amp;showall=True">My Answers</a></div>
+					<div><a id="ctl00_MemberMenu_MyComments" href="/script/comments/MemberComments.aspx?mid=461059">My Comments</a></div>
+					
+				</div>
+			</span><span id="ctl00_MemberMenu_TotalPoints" title="Total reputation points 1,159" class="member-rep-box silver" style="margin-left:0"><a href="/script/Reputation/List.aspx?mid=461059">1.2K</a></span>
+			&nbsp;
+			<a id="ctl00_MemberMenu_Signout" href="/script/Membership/LogOff.aspx?rp=%2fArticles%2f32035%2fRendering-Shapefile-in-OpenGL">Sign out</a>
+
+		
+	</div>
+</div>
+		
+
+		
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td class="page-header"><a href="/"><img id="ctl00_Logo" title="The Code Project" src="http://s.codeproject.com/App_Themes/Std/Img/logo225x90.gif" alt="Home" style="border-width:0px;" /></a></td>
+			<td class="page-header" align="right">
+				<div class="lqm_ad" lqm_publisher="lqm.codeproject.site"  lqm_zone="ros" lqm_format="728x90" lqm_country='BR' lqm_tags='VC6, VC7, VC7.1, VC8.0, WinXP, VS2005, C++, C++/CLI, C, Windows, Win32, Visual-Studio, MFC, GDI, GDI+, OpenGL, Advanced,rating3'></div>
+			</td>
+		</tr></table>
+
+		<table cellpadding="0" cellspacing="0" class="contrast1-background extended"><tr><td nowrap="nowrap">
+			
+
+<div class="navbar clearfix">
+<ul id="nav" class="openable">
+
+<li><a id="ctl00_TopNavBar_Home" class="down" href="http://www.codeproject.com">Home</a>
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Art" class="down selected" href="/script/Articles/Latest.aspx">Articles</a>
+
+	<ul>
+		<li class="openable"><a id="ctl00_TopNavBar_ArtTopicList" class="fly last" onmouseover="navBarMenu.ShowMap(this, &#39;siteMap&#39;);" href="/script/Content/SiteMap.aspx">Chapters and Sections<span class="fly-menu">&gt;</span></a><ul id="ctl00_TopNavBar_MapFlyout"><li>
+				<div id="siteMap" class="tooltip-flyout">
+					<img src="/images/animated.gif" alt="loading" style="margin:150px;width:100px;height:100px;" />
+				</div>
+			</li></ul>
+		</li>
+		<li><a id="ctl00_TopNavBar_ArtSearch" class="fly break" href="/search.aspx">Search</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestArts" class="fly" href="/script/Articles/Latest.aspx?at=1,3,7">Latest Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestTips" class="fly" href="/script/Articles/Latest.aspx?at=6">Latest Tips/Tricks</a></li>
+		<li><a id="ctl00_TopNavBar_ArtTop" class="fly" href="/script/Articles/TopArticles.aspx?ta_so=5">Top Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtBeginner" class="fly" href="/search.aspx?aidlst=152&amp;sa_us=True">Beginner Articles</a></li>
+		
+		<li><a id="ctl00_TopNavBar_ArtBlogArticles" class="fly break" href="/script/Articles/BlogArticleList.aspx">Technical Blogs</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostArticle" class="fly" href="/script/Articles/Submit.aspx">Submit an Article or Tip</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostBlog" class="fly break" href="/script/Articles/BlogFeed.aspx">Post your Blog</a></li>
+		<li><a id="ctl00_TopNavBar_ArtGuide" class="fly" href="/info/Submit.aspx">Posting/Update Guidelines</a></li>
+		<li><a id="ctl00_TopNavBar_ArtCompetition" class="fly last" href="/script/Awards/CurrentCompetitions.aspx?cmpTpId=1">Article Competition</a></li>
+	</ul>
+
+</li>
+
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Answers" href="/script/Answers/List.aspx?tab=active">Quick Answers</a>
+	<ul>
+		<li id="ctl00_TopNavBar_AQL"><a id="ctl00_TopNavBar_ArticleQuestion" class="fly highlight" href="#_comments">Ask a Question about this article</a></li>
+
+		<li><a id="ctl00_TopNavBar_QAAsk" class="fly" href="/Questions/ask.aspx">Ask a Question</a></li>
+
+		
+		<li><a id="ctl00_TopNavBar_QAUnanswered" class="fly" href="/script/Answers/List.aspx?tab=unanswered">View Unanswered Questions</a></li>
+		<li><a id="ctl00_TopNavBar_QALatest" class="fly" href="/script/Answers/List.aspx?tab=active">View All Questions...</a></li>
+		
+				<li><a id="ctl00_TopNavBar_QATR_ctl00_Tag" class="fly" href="/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=81" style="padding-left:30px">C# questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl01_Tag" class="fly" href="/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=85" style="padding-left:30px">ASP.NET questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl02_Tag" class="fly" href="/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=842" style="padding-left:30px">VB.NET questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl03_Tag" class="fly" href="/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=78" style="padding-left:30px">C++ questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl04_Tag" class="fly" href="/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=308" style="padding-left:30px">C#4.0 questions</a></li>
+			
+	</ul>
+
+</li>
+
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Forums" href="/script/Forums/List.aspx">Discussions</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_MessageBoardsAll" class="fly" href="/script/Forums/List.aspx">All Message Boards...</a></li>
+		<li class="openable"><a class="fly" style="padding-left:30px" href="/Forums/1580997/Application-Lifecycle.aspx">Application Lifecycle<span class="fly-menu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="/Forums/1533717/Running-a-Business.aspx">Running a Business</a></li>
+<li><a class="fly" href="/Forums/1533716/Sales-Marketing.aspx">Sales / Marketing</a></li>
+<li><a class="fly" href="/Forums/1651/Collaboration-Beta-Testing.aspx">Collaboration / Beta Testing</a></li>
+<li><a class="fly" href="/Forums/3304/Work-Training-Issues.aspx">Work &amp; Training Issues</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/369270/Design-and-Architecture.aspx">Design and Architecture</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/12076/ASP-NET.aspx">ASP.NET</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1580226/JavaScript.aspx">JavaScript</a>
+</li>
+<li class="openable"><a class="fly" style="padding-left:30px" href="/Forums/1647/C-Cplusplus-MFC.aspx">C / C++ / MFC<span class="fly-menu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="/Forums/4486/ATL-WTL-STL.aspx">ATL /  WTL / STL</a></li>
+<li><a class="fly" href="/Forums/3785/Managed-Cplusplus-CLI.aspx">Managed C++/CLI</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1649/Csharp.aspx">C#</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1627782/Free-Tools.aspx">Free Tools</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1725/Database.aspx">Database</a>
+</li>
+<li class="openable"><a class="fly" style="padding-left:30px" href="/Forums/186301/Hardware-Devices.aspx">Hardware &amp; Devices<span class="fly-menu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="/Forums/1644/System-Admin.aspx">System Admin</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1606152/Hosting-and-Servers.aspx">Hosting and Servers</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1643/Java.aspx">Java</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1650/NET-Framework.aspx">.NET Framework</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/13695/Mobile.aspx">Mobile</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1653293/VS-11-NET-4-5.aspx">VS 11 &amp; .NET 4.5</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1540733/Sharepoint.aspx">Sharepoint</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1004257/Silverlight-WPF.aspx">Silverlight / WPF</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1646/Visual-Basic.aspx">Visual Basic</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1640/Web-Development.aspx">Web Development</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="/Forums/1645/Site-Bugs-Suggestions.aspx">Site Bugs / Suggestions</a>
+</li>
+
+		<li class="heading openable">Other Languages<span class="fly-menu">&gt;</span>
+		<ul>
+		<li><a class="fly" href="/Forums/1580229/Hindi.aspx">General Indian Topics</a></li>
+		<li><a class="fly" href="/Forums/1580230/Chinese.aspx">General Chinese Topics</a></li>
+		</ul>
+		</li>
+		
+	</ul>
+
+</li>
+
+<li class="openable"><a id="ctl00_TopNavBar_Zones" href="/Zones/index.aspx">Zones</a>
+
+	<ul>
+		<!--<li class="heading">Zones</li>-->
+		<li><a href="/Zones/Commerce/" class="fly">The Commerce Zone</a></li><li><a href="/Zones/Mobile/" class="fly">The Mobile & App Zone</a></li><li><a href="/Zones/Cloud/" class="fly">The Cloud Zone</a></li><li><a href="/Zones/Hardware/" class="fly">The Hardware Zone</a></li><li><a href="/Zones/Parallelism/" class="fly">The Parallelism Zone</a></li><li><a href="/Zones/WPF-Silverlight/" class="fly">The WPF / Silverlight Zone</a></li><li><a href="/Zones/Flex-Flash/" class="fly">The Flex / Flash Zone</a></li><li><a href="/Zones/HTML-CSS/" class="fly">The HTML5 / CSS3 Zone</a></li><li><a href="/Zones/SharePoint/" class="fly">SharePoint Zone</a></li><li><a href="/Zones/SqlServer/" class="fly">The SQL Zone</a></li><li><a href="/Zones/WhitePapers/" class="fly break">WhitePapers / Webcasts</a></li>
+		<li><a id="ctl00_TopNavBar_Solutions" class="fly last" href="/KB/solution-center/">Solutions Center</a></li>
+	</ul>
+
+</li>
+
+
+
+
+
+
+
+
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Features" href="/Feature/">Features</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_WhosWho" class="fly" href="/script/Membership/Profiles.aspx">Who's Who</a></li>
+		<li><a id="ctl00_TopNavBar_MVPs" class="fly" href="/script/Awards/MVPWinners.aspx">Most Valuable Professionals</a></li>
+		<li><a id="ctl00_TopNavBar_Companies" class="fly break" href="/script/Membership/Profiles.aspx?mgtid=1&amp;mgm=True">Company Listings</a></li>
+		<li><a id="ctl00_TopNavBar_Catalog" class="fly" href="/script/Catalog/List.aspx">Component & Service Catalog</a></li>
+		<li><a id="ctl00_TopNavBar_Comps" class="fly" href="/script/Awards/CurrentCompetitions.aspx?cmpTpId=1&amp;awsac=true">Competitions</a></li>
+		<li><a id="ctl00_TopNavBar_News" class="fly" href="/script/News/List.aspx">News</a></li>
+		<li></li>
+		<li><a id="ctl00_TopNavBar_Insider" class="fly" href="/Feature/Insider/">The Insider Newsletter</a></li>
+		<li><a id="ctl00_TopNavBar_Newsletters" class="fly" href="/script/Mailouts/Archive.aspx?mtpid=1">Newsletter archive</a></li>
+		<li><a id="ctl00_TopNavBar_PressRelease" class="fly" href="/script/PressReleases/Preview.aspx">Press Releases</a></li>
+		<li><a id="ctl00_TopNavBar_Surveys" class="fly" href="/script/Surveys/List.aspx">Surveys</a></li>
+		<li><a id="ctl00_TopNavBar_Stuff" class="fly last" href="/Info/Stuff.aspx">CodeProject Stuff</a></li>
+		<li></li>
+	</ul>
+
+</li>
+
+
+<li class="openable"><a id="ctl00_TopNavBar_Help" href="/KB/FAQs/">Help!</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_HelpWhatIs" class="fly" href="/info/guide.aspx">What is 'The Code Project'?</a></li>
+		<li><a id="ctl00_TopNavBar_HelpGeneral" class="fly" href="/KB/FAQs/">General FAQ</a></li>
+		<li><a id="ctl00_TopNavBar_HelpPostQuestion" class="fly" href="/Questions/ask.aspx">Post a Question</a></li>
+		<li><a id="ctl00_TopNavBar_HelpBugs" class="fly" href="/Forums/1645/Site-Bugs-Suggestions.aspx">Bugs and Suggestions</a></li>
+		<li><a id="ctl00_TopNavBar_HelpSiteMap" class="fly" href="/script/Content/SiteMap.aspx">Site Map</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAdvertise" class="fly" href="http://lakequincy.com/">Advertise with us</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAboutUs" class="fly last" href="/info/about.aspx">About Us</a></li>
+	</ul>
+
+</li>
+
+
+<li  class="openable" style="margin-left:10px">
+<a id="ctl00_TopNavBar_Lounge" class="simple" href="/Lounge.aspx">The Lounge</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_InsiderLnk" class="fly" href="/Insider.aspx">The Insider News</a></li>
+		<li><a id="ctl00_TopNavBar_LoungeLnk" class="fly" href="/Lounge.aspx">The Lounge  </a></li>
+		<li><a id="ctl00_TopNavBar_CleverLnk" class="fly" href="/Feature/CleverCode.aspx">Clever Code</a></li>
+		<li><a id="ctl00_TopNavBar_ShameLnk" class="fly" href="/Feature/HallOfSHame.aspx">Hall of Shame</a></li>
+		<li><a id="ctl00_TopNavBar_SoapBoxLnk" class="fly" href="/Forums/1536756/The-Soapbox.aspx">The Soapbox</a></li>
+	</ul>
+
+</li>
+
+</ul>
+
+</div>
+		</td><td align="right">
+			
+
+<div class="search-bar">
+
+<form method="get" action="/search.aspx" name="Search" class="tight">
+
+
+<table border="0" cellspacing="0" cellpadding="0" class="search"><tr><td><input TabIndex="2" class="search " id="sb_tb" value="" name="q" /></td><td><input type="image" src="/images/search.gif" /></td></tr></table>
+
+<div class="hover-container">
+	<div id="SearchFilter" class="search-advanced popup small-text align-left">
+	<b>Search within:<br /></b>
+		
+		<input type="radio" id="sb_kw" name="sbo" value="kw" checked="true"><label for="sb_kw">Articles</label><br>
+<input type="radio" id="sb_qa" name="sbo" value="qa"><label for="sb_qa">Quick Answers</label><br>
+<input type="radio" id="sb_fm" name="sbo" value="fm"><label for="sb_fm">Messages</label><br>
+<input type="radio" id="sb_ctlk" name="sbo" value="ctlk"><label for="sb_ctlk">Product Catalog</label><br>
+
+
+		
+		
+	</div>
+</div>
+</form>
+
+</div>
+		</td></tr></table>
+		
+
+		
+		<div class="container-article hreview-aggregate"> 
+		
+			
+			<div class="container-header">
+				<div id="ctl00_Header" class="header">
+
+					<a name="Main"></a>
+
+					
+					<a name="_articleTop" id="_articleTop"></a>
+					
+
+<div class="clearfix hover-container">
+
+	
+	<div class="float-right action-links"> 
+		<span id="SBI"><img src="http://s.codeproject.com/images/share_drop24.png" id="ctl00_TitleArea_ActionLinks_AddTo_Img" width="37" height="24" alt="add" style="vertical-align:middle" />
+</span>
+<div id="ATD" class="list-socialbookmark"></div> 
+ 
+
+<span class="tooltip">
+	<a id="ctl00_TitleArea_ActionLinks_ArticleBmk_ImgBt" title="Bookmark" AlternateText="Bookmark" name="bm_32035_2" onclick="return bookmarkMe(32035,2,&#39;/script/Bookmarks/Ajax/Add.aspx?obid=32035&amp;obtid=2&amp;action=AddBookmark&amp;bio=true&#39;,true);" href="/script/Bookmarks/Add.aspx?obid=32035&amp;obtid=2&amp;action=AddBookmark&amp;bio=true" style="display:inline-block;height:24px;width:24px;vertical-align:middle;"><img title="Bookmark" src="http://s.codeproject.com/script/Bookmarks/Images/bookmark.png" alt="" style="border-width:0px;" /></a>
+
+
+<span id="ctl00_TitleArea_ActionLinks_ArticleBmk_StatusMsg" class="tiny-text" style="display:none" name="bm_32035_2"></span>
+ 
+	<div class="speech-bubble-container-up">
+		<div class="speech-bubble-up">Add to your CodeProject bookmarks</div>
+		<div class="speech-bubble-pointer-up">
+			<div class="speech-bubble-pointer-up-inner"></div>
+		</div>
+	</div>
+</span>
+
+
+<a id="ctl00_TitleArea_ActionLinks_PrintLnk" class="tooltip" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?display=Print">
+	<img src="http://s.codeproject.com/script/Content/Images/print.gif" 
+		width="24px" height="24px" style="vertical-align:middle;border:0">
+	<div class="speech-bubble-container-up">
+		<div class="speech-bubble-up">Print Article</div>
+		<div class="speech-bubble-pointer-up">
+			<div class="speech-bubble-pointer-up-inner"></div>
+		</div>
+	</div>
+</a>
+	</div>
+
+	<div class="container">
+		
+		<div class="breadcrumb float-left"><a href="/script/Content/SiteMap.aspx"><span class="sitemap-anchor" onmouseover="navBarMenu.ShowMap(this,'map');"><img width="16px" height="16px" src="/images/sitemap16.png" border="0" alt="Site map" style="vertical-align:middle" /><div id="map" class="tooltip-flyout"><img src="/images/animated.gif" style="margin:150px;width:100px;height:100px;border:0;" /></div></span></a> &#187; <a href="/Chapters/3/Multimedia.aspx">Multimedia</a> &#187; <a href="/KB/openGL/">OpenGL</a> &#187; <a href="/KB/openGL/#General">General</a></div>
+	</div>
+
+	
+	<div id="ctl00_TitleArea_InfoArea" class="float-right pad-top">
+		
+
+<div class="infobox">
+	<table class="tight small-text" cellpadding="0" cellspacing="1">
+	<tr><td>Licence&nbsp;</td><td><a href="http://www.codeproject.com/info/cpol10.aspx" title="The Code Project Open License (CPOL)">CPOL</a></td></tr>
+	
+	<tr><td>First Posted&nbsp;</td><td nowrap="nowrap"><b>29 Dec 2008</b></td></tr>
+	<tr><td>Views&nbsp;</td><td><b>40,422</b></td></tr>
+	
+	<tr><td>Downloads&nbsp;</td><td><b>2,519</b></td></tr>
+		
+	
+	<tr><td>Bookmarked&nbsp;</td><td><b>28 times</b></td></tr>
+	
+	
+
+	
+	
+	</table>
+</div>	
+	</div>
+
+	
+	<div class="item">
+	<h1 id="ctl00_TitleArea_ArticleTitle" class="fn">Rendering Shapefile in OpenGL</h1> 
+	</div>
+
+	
+	<div class="author">
+		By <b><a rel="author" href="/script/Membership/View.aspx?mid=2997187">Durga Prasad Dhulipudi</a></b> | 
+		29 Dec 2008 
+		
+		| <a id="ctl00_TitleArea_ArticleInfoLink" href="/script/Articles/Types.aspx?#Article">Article</a>
+
+		
+		
+	</div>
+	
+	<div class="tags">
+	<span id="ctl00_TitleArea_TagsList_TagWrp" class="tags">
+	
+	
+	
+	<span id="ctl00_TitleArea_TagsList_VisibleTags"><span class="t"><a rel="tag" href="/Tags/VC6">VC6</a></span><span class="t"><a rel="tag" href="/Tags/VC7">VC7</a></span><span class="t"><a rel="tag" href="/Tags/VC7.1">VC7.1</a></span><span class="t"><a rel="tag" href="/Tags/VC8.0">VC8.0</a></span><span class="t"><a rel="tag" href="/Tags/WinXP">WinXP</a></span><span class="t"><a rel="tag" href="/Tags/VS2005">VS2005</a></span><span class="t"><a rel="tag" href="/Tags/C%2b%2b">C++</a></span><span class="t"><a rel="tag" href="/Tags/C%2b%2b%2fCLI">C++/CLI</a></span><span class="t"><a rel="tag" href="/Tags/C">C</a></span><span class="t"><a rel="tag" href="/Tags/Windows">Windows</a></span></span><acronym id="ctl00_TitleArea_TagsList_HiddenTags" title="plus: Win32, Visual-Studio, MFC, GDI, GDI+, OpenGL, Advanced">, +</acronym> 
+
+	
+	
+</span>
+
+	</div>
+
+	
+	<div class="abstract summary"><span id="ctl00_TitleArea_ArticleDescr">Rendering ESRI Shapefiles(.shp)  using OpenGL</span></div>
+</div>
+
+
+
+					
+
+				</div>
+
+				<div id="ctl00_HeadSide" class="header-sidebar">
+					<div class="align-left" style="height:24px">
+						
+
+
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+					</div>
+
+					
+
+<div class="bold pad-top">See Also</div>
+<ul class="outdent small-text" style="margin-left:5px">
+	<li><a id="ctl00_SeeAlso_LikeThis" href="/search.aspx?q=Rendering+Shapefile+in+OpenGL">More like this</a></li>
+	<li><a id="ctl00_SeeAlso_ByAuthor" href="/script/Articles/MemberArticles.aspx?amid=2997187">More by this author</a></li>
+</ul>
+
+				</div>
+
+			</div>
+			
+
+			
+			<div id="ctl00_Nav" class="container-nav">
+				<div id="ctl00_TabContainer" class="tabs-container clearfix">
+
+					<div class="float-left">
+						
+						
+
+<div class="tabs float-left"><table cellpadding="0" cellspacing="0"><tr>
+	<td class="tab-selected">Article</td><td class="tab-unselected"><a href="/script/Articles/ViewDownloads.aspx?aid=32035">Browse Code</a></td><td class="tab-unselected"><a href="/script/Articles/Statistics.aspx?aid=32035">Stats</a></td><td class="tab-unselected"><a href="/script/Articles/ListVersions.aspx?aid=32035">Revisions (2)</a></td><td class="tab-unselected"><a href="/script/Articles/ListAlternatives.aspx?aid=32035">Alternatives</a></td>
+</tr></table></div>	
+
+
+						
+						<div class="float-left" style="margin-left:15px">
+							<div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor:pointer" onclick="scrollToAnchor(&#39;#_rating&#39;);" name="CurRat_32035">
+								
+
+<table cellpadding="0" cellspacing="0" class="small-text">
+<tr>
+	
+	<td class="nowrap">
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars" style="height:24px;width:120px;position:relative;">
+	<div class="clipped align-left float-left" style="height:24px;width:84px;">
+		<img src="http://s.codeproject.com/script/Ratings/Images/stars-fill.png" style="border-width:0px;" />
+	</div><div class="clipped" style="height:24px;width:36px;position:relative;">
+		<img src="http://s.codeproject.com/script/Ratings/Images/stars-empty.png" style="border-width:0px;position:absolute;top:0;right:0;" />
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span class="rating">3.54</span> (<span class="count">8 votes</span>)</span>
+		
+	</td>
+
+</tr>
+
+</table>
+
+								<div id="ctl00_RB" class="speech-bubble-container-up">
+									<div class="speech-bubble-up" style="width:150px !important">
+										            
+<div>
+<table class="feature" width="100%" height="50px" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0"><tr><td class="chart-column"><img src="http://s.codeproject.com/Images/t.gif" width="20pxpx" height="1px" border="0px" alt="" title="" /><br /><span title="0 votes">1</span></td>
+<td class="chart-column"><img src="http://s.codeproject.com/Images/t.gif" width="20pxpx" height="1px" border="0px" alt="" title="" /><br /><span title="0 votes">2</span></td>
+<td class="chart-column"><img src="/script/Ratings/Images/pollcol.gif" width="20pxpx" height="50px" border="0px" alt="4 votes, 50.0%" title="4 votes, 50.0%" /><br /><span title="4 votes">3</span></td>
+<td class="chart-column"><img src="/script/Ratings/Images/pollcol.gif" width="20pxpx" height="37px" border="0px" alt="3 votes, 37.5%" title="3 votes, 37.5%" /><br /><span title="3 votes">4</span></td>
+<td class="chart-column"><img src="/script/Ratings/Images/pollcol.gif" width="20pxpx" height="12px" border="0px" alt="1 vote, 12.5%" title="1 vote, 12.5%" /><br /><span title="1 vote">5</span></td>
+</tr></table><div class="small-text align-center">3.54/5 - 8 votes</div><div class="small-text align-center subdue">μ 3.54, σ<sub>a</sub> 1.30 [<a href="/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+									</div>
+									<div class="speech-bubble-pointer-up">
+										<div class="speech-bubble-pointer-up-inner"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="float-left">
+							&nbsp; 
+							<a id="discussAnch" href="#_comments" class="tooltip anchorLink">
+							<img src="http://s.codeproject.com/script/Content/Images/discuss.gif" 
+								width="24px" height="24px" alt="Discuss" style="vertical-align:middle;border:0" />
+								<div class="speech-bubble-container-up">
+									<div class="speech-bubble-up">Discuss this article</div>
+									<div class="speech-bubble-pointer-up">
+										<div class="speech-bubble-pointer-up-inner"></div>
+									</div>
+								</div>
+							</a>
+							<span id="ctl00_CmtCnt" class="subdue small-text align-middle" style="margin-left:-4px">12</span>
+
+							&nbsp; 
+
+							   
+						</div>
+
+					</div>
+
+				</div>
+
+				
+			</div>
+			
+
+			
+			<div class="container-text">
+
+				<div id="AT" class="text">
+					
+					
+					
+					
+
+						
+							
+			
+					<form name="aspnetForm" method="post" action="/Articles/32035/Rendering-Shapefile-in-OpenGL" id="aspnetForm" style="margin:0;padding:0">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMjExOTQzNjk4Mw9kFgJmD2QWAgIHD2QWCAIRD2QWAgIBD2QWBmYPDxYCHgtOYXZpZ2F0ZVVybAUyL3NjcmlwdC9BcnRpY2xlcy9BZG1pbi9FZGl0b3JDaG9pY2UuYXNweD9haWQ9MzIwMzVkZAICDw8WAh8ABTgvc2NyaXB0L0F3YXJkcy9BZG1pbi9Bd2FyZE9iamVjdC5hc3B4P29iaWQ9MzIwMzUmb2J0aWQ9MmRkAgoPDxYCHwAFLy9zY3JpcHQvQXJ0aWNsZXMvQWRtaW4vUXVldWVFZGl0LmFzcHg/YWlkPTMyMDM1ZGQCEw9kFgICAQ9kFgICAg8WAh4JaW5uZXJodG1sBQIxMmQCFQ9kFgICCw9kFgYCAg8WAh4GYWN0aW9uBS0vQXJ0aWNsZXMvMzIwMzUvUmVuZGVyaW5nLVNoYXBlZmlsZS1pbi1PcGVuR0wWCgIBDw8WBB8ABTYvc2NyaXB0L0FydGljbGVzL1N1Ym1pc3Npb25XaXphcmQuYXNweD9hdD0xJmFwaWQ9MzIwMzUeB1Zpc2libGVnZGQCAw9kFgICAQ8WAh8DaGQCBQ9kFgICAg9kFgICAQ8QZGQWAGQCCw8WAh4LXyFJdGVtQ291bnQCAWQCDQ9kFgICAQ8WAh4EVGV4dAVmPGEgY2xhc3M9ImFuY2hvckxpbmsiIGhyZWY9Ii9BcnRpY2xlcy8zMjAzNS9SZW5kZXJpbmctU2hhcGVmaWxlLWluLU9wZW5HTCNfYXJ0aWNsZVRvcCI+QXJ0aWNsZSBUb3A8L2E+ZAIKDw8WBB8FBQlQZXJtYWxpbmsfAAUtL0FydGljbGVzLzMyMDM1L1JlbmRlcmluZy1TaGFwZWZpbGUtaW4tT3BlbkdMZGQCGQ8WAh8FBShDb3B5cmlnaHQgMjAwOCBieSBEdXJnYSBQcmFzYWQgRGh1bGlwdWRpZAIXD2QWAgIFDw8WAh8DaGRkZOzAYfodSbxeQdbCOo3yVb6TZbAL" />
+</div>
+
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCALI9smxCgLAlMXDBwLBlMXDBwLClMXDBwLDlMXDBwLElMXDBwLP+++tCwK5upDkC0/pzFvE3fORisIbkIuNcILNTGl5" />
+</div>
+
+						<a id="ctl00_AddAlternative" title="Write a related article about upgrades or translate this into a different language." class="button add-alternative float-right" href="/script/Articles/SubmissionWizard.aspx?at=1&amp;apid=32035">Add your own<br />alternative version</a>
+
+						<!-- Article Text Start -->
+						<div id="contentdiv">
+						
+
+
+
+
+<ul class="download">
+<li><a href="/KB/openGL/RenderSHP/GLRenderSHP_Demo.zip">Download demo - 742.51 KB </a></li>
+
+<li><a href="/KB/openGL/RenderSHP/GLRenderSHP_Src.zip">Download source - 763.8 KB </a></li>
+</ul>
+
+<h2>Introduction</h2>
+
+<p>ESRI shapefiles are well known vector data formats used for Mapping a.k.a GIS applications. There are many open source softwares like JUMP, SharpMap that allow the users to view the shapefiles. This article focuses on rendering them in OpenGL console. </p>
+
+<h2>Background</h2>
+
+<p>Shapefiles hold geographic information in the form of points, lines and polygons. For instance- political boundaries like Countries, States are treated as Polygon shapefiles; linear features such as roads, rivers are Line shapefiles and; Airports or BusBays are sometimes treated as point shapefiles. </p>
+
+<h2>Using the Code</h2>
+
+<p>I assume that the intended audience is familiar with OpenGL and understands concepts like linking with static or dynamic libraries in Microsoft Visual Studio environment. </p>
+
+<p>To parse the shapefile, I have used the Shapelib (<a href="http://shapelib.maptools.org/">http://shapelib.maptools.org/</a>). Include the <em>shapefile.h</em> at the beginning. Make use of the <em>shapelib.lib</em> by adding <em>shapelib\shapelib.lib</em> to <em>object/library</em> Modules by going to Project&gt;Settings&gt;Link. </p>
+
+<pre lang="C++">   <span class="code-preprocessor">#include</span><span class="code-preprocessor"> <span class="code-string">"</span><span class="code-string">shapelib\shapefil.h"</span></span></pre>
+
+<p>Call the following function to Open Shapefile by passing the <em>.shp</em> file name. The function parses the geographic coordinate information and stores them in the Vectors <code>vPoints</code>, <code>vLines </code>and <code>vPolygons</code>. </p>
+
+<pre lang="C++">  <span class="code-comment">//</span><span class="code-comment">Function to Open Shapefile and parse the info 
+</span>  <span class="code-keyword">void</span> OpenShapeFile(<span class="code-keyword">char</span>* fileName)</pre>
+
+<p><code>SBoundingBox </code>is a structure defined to hold the bounding box of the <code>shapefile</code>. Bounding box coordinates are read in <code>OpenShapeFile </code>function and assigned as <code>glOrtho() </code>parameters, which would restrict the limits of display to the rectangle enveloping the area of interest. </p>
+
+<pre lang="C++"> <span class="code-comment">//</span><span class="code-comment">Assign Bounding Box Coordinates of Shapefile to glOrtho()
+</span> glOrtho(sBoundingBox.fMinX, sBoundingBox.fMaxX,
+	sBoundingBox.fMinY,sBoundingBox.fMaxY,-<span class="code-digit">1</span>,<span class="code-digit">1</span>);</pre>
+
+<p>Finally, it is just a matter of setting appropriate OpenGL primitives(<code>GL_POINTS</code>, <code>GL_LINE_STRIP</code>, <code>GL_LINE_LOOP</code>) to render Point, Line or Polygon type shapefile. </p>
+
+<pre lang="C++"><span class="code-keyword">void</span> draw()
+{
+  <span class="code-comment">//</span><span class="code-comment">Render Point Shapefile glColor3f (0.0, 0.0, 1.0);
+</span>   glEnable(GL_POINT_SMOOTH) ; 
+   glPointSize(<span class="code-digit">5</span>.<span class="code-digit">0</span>); 
+   glBegin(GL_POINTS); 
+   <span class="code-keyword">for</span>(<span class="code-keyword">int</span> i=0;i &lt; vPoints.size();i++)  
+   {
+    glVertex2f(vPoints[i].dX,vPoints[i].dY); 
+    glEnd();
+   } 
+   	
+	<span class="code-comment">//</span><span class="code-comment">Render Line Shapefile
+</span>	glColor3f (<span class="code-digit">0</span>.<span class="code-digit">0</span>, <span class="code-digit">1</span>.<span class="code-digit">0</span>, <span class="code-digit">0</span>.<span class="code-digit">0</span>);
+	<span class="code-keyword">for</span>( i=0;i &lt; vLines.size();i++)
+	{
+		glBegin(GL_LINE_STRIP);
+		<span class="code-keyword">for</span>(<span class="code-keyword">int</span> j=0;&lt; vLines[i].vPointList.size();j++)
+		{
+		  glVertex2f(vLines[i].vPointList[j].dX,vLines[i].vPointList[j].dY);
+		}
+		glEnd();
+	}
+	
+	<span class="code-comment">//</span><span class="code-comment">Render Polygon Shapefile
+</span>	glColor3f(<span class="code-digit">1</span>.<span class="code-digit">0</span>,<span class="code-digit">0</span>.<span class="code-digit">0</span>, <span class="code-digit">0</span>.<span class="code-digit">0</span>);
+	<span class="code-keyword">for</span>( i=0;i &lt; vPolygons.size();i++)
+	{
+		glBegin(GL_LINE_LOOP);
+		<span class="code-keyword">for</span>(<span class="code-keyword">int</span> j=0;j &lt;vPolygons[i].vPointList.size();j++)
+		{
+			glVertex2f(vPolygons[i].vPointList[j].dX,
+					vPolygons[i].vPointList[j].dY);
+		}
+		glEnd();
+	}
+    glFlush();  
+}</pre>
+
+<h2>Output</h2>
+<img style="WIDTH: 400px; HEIGHT: 200px" height="200" alt="Sample Output- OpenGL Console" hspace="0" src="/KB/openGL/RenderSHP/GLRenderSHP.gif" width="400" align="middle" border="0" /> 
+<h2>Points of Interest</h2>
+
+<p>It would be nice if someone comes up with ways to read/apply/reproject the <em>.shp</em> file by reading the projection information from <em>.prj</em> files accompanied with <em>.shp</em> files. <code>PROJ.4</code> is an Open Source projection library if you want to give it a try. </p>
+
+<p>Experimenting with pan and zoom features will be a good challenge. </p>
+
+<p>Maintaining Aspect Ratio is a predominant feature in GIS applications. I leave it to you as another feature to explore.</p>
+
+<h2>History</h2>
+
+<ul>
+<li>29<sup>th</sup> December, 2008: Initial post</li>
+</ul>
+
+
+
+
+						</div>
+						<!-- Article Text End -->
+
+						
+						
+						<h2>License</h2>
+						<div id="LicenseTerms"><p>This article, along with any associated source code and files, is licensed under <a href="http://www.codeproject.com/info/cpol10.aspx" rel="license">The Code Project Open License (CPOL)</a></p></div>
+						
+
+						
+						<h2 id="ctl00_AboutHeading">About the Author</h2>
+
+						<div class="float-right">
+						<div class="lqm_ad" lqm_publisher="lqm.codeproject.site"  lqm_zone="ros" lqm_format="300x250" lqm_country='BR' lqm_loadOnView='true'  lqm_tags='VC6, VC7, VC7.1, VC8.0, WinXP, VS2005, C++, C++/CLI, C, Windows, Win32, Visual-Studio, MFC, GDI, GDI+, OpenGL, Advanced,rating3'></div>
+						</div>
+
+						
+						
+<table cellpadding="0" cellspacing="5" border="0">
+<tr valign="top">
+<td id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberPhotoTable" valign="top" style="width:155px;">
+	<b><a id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberProfileLink" href="/Members/Durga-Prasad-Dhulipudi">Durga Prasad Dhulipudi</a></b><br /><br />
+	<center></center>
+
+	<div class="small-text">
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberJobTitle">Software Developer</span><br />
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberCompany"></span><br />
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberLocation"><img src="/script/Geo/Images/IN.gif" alt="India" width="16px" height="11px" /> India</span><br />
+		<br />
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberType">Member</span><br />
+		
+		<br />
+
+		
+	</div>
+</td>
+
+<td>
+	He works in the GIS and allied technologies. His areas of Interest are GIS/CAD ,Defence,Aerospace and Law Enforcement.<br />	
+</td>
+</tr>
+</table><br />
+						
+						
+
+						<div class="clearfix"></div>
+
+						
+						<div id="ctl00_RateArticleRow" class="clearfix voting-bar">
+						<div class="float-left" style="padding-top:8px"><a class="anchorLink" href="/Articles/32035/Rendering-Shapefile-in-OpenGL#_articleTop">Article Top</a></div>
+						<div class="float-right"><a id="_rating" name="_rating">&nbsp;</a></div> 
+						<div class="float-right align-right">
+							<div id="ctl00_RateArticle_RateItemWrapper" class="container-rating small-text" name="RateItem_32035">
+
+	<table width="100%" cellpadding="0" cellspacing="0" class="small-text">
+	<tr>
+		<td id="ctl00_RateArticle_VoteResultDiv" nowrap="nowrap" align="right">
+			<span class="voteRes"></span>
+			<img class="loaderImg" width="16px" alt="loading..." height="16px" 
+				src="/Images/animated_loading_blue.gif" style="display:none;" /> 
+		</td>
+
+	
+		<td class="voteTbl" style="white-space:nowrap" align="right">
+			<table class="small-text">
+			<tr>
+				
+				<td id="ctl00_RateArticle_RateText" class="rating-prompt">
+					Rate this:
+				</td>
+
+				<td id="ctl00_RateArticle_StartForm" align="right" nowrap="nowrap">
+					<i>&nbsp;&nbsp;Poor</i>
+				</td>
+
+				<td id="ctl00_RateArticle_VoteFormDiv" class="nowrap">
+					
+
+					<span id="ctl00_RateArticle_RB" class="tooltip ajaxHist radio voting">
+						<span id="ctl00_RateArticle_VoteRBL"><input id="ctl00_RateArticle_VoteRBL_0" type="radio" name="ctl00$RateArticle$VoteRBL" value="1" onclick="ChkRtctl00_RateArticle(1, 32035);
+$(&#39;#ctl00_RateArticle_RCD&#39;).show();
+;" /><input id="ctl00_RateArticle_VoteRBL_1" type="radio" name="ctl00$RateArticle$VoteRBL" value="2" onclick="ChkRtctl00_RateArticle(2, 32035);
+$(&#39;#ctl00_RateArticle_RCD&#39;).show();
+;" /><input id="ctl00_RateArticle_VoteRBL_2" type="radio" name="ctl00$RateArticle$VoteRBL" value="3" onclick="ChkRtctl00_RateArticle(3, 32035);
+$(&#39;#ctl00_RateArticle_RCD&#39;).show();
+;" /><input id="ctl00_RateArticle_VoteRBL_3" type="radio" name="ctl00$RateArticle$VoteRBL" value="4" onclick="ChkRtctl00_RateArticle(4, 32035);
+$(&#39;#ctl00_RateArticle_RCD&#39;).show();
+;" /><input id="ctl00_RateArticle_VoteRBL_4" type="radio" name="ctl00$RateArticle$VoteRBL" value="5" onclick="ChkRtctl00_RateArticle(5, 32035);
+$(&#39;#ctl00_RateArticle_RCD&#39;).show();
+;" /></span> 
+
+						
+					</span>
+
+				</td>
+
+				<td id="ctl00_RateArticle_EndForm" align="left">
+					<i>Excellent</i>
+				</td>
+
+				<td>	
+					<input type="submit" name="ctl00$RateArticle$SubmitRateBtn" value="Vote" onclick="return PostBack_ctl00_RateArticle_RateItemWrapper();" id="ctl00_RateArticle_SubmitRateBtn" class="button" />
+				</td>
+			</tr>
+			</table>
+			<span id="ctl00_RateArticle_ErrorMessage" class="error"></span>
+		</td>
+	</tr>
+	</table>
+	<div class="hover-container">
+		<div id="ctl00_RateArticle_RCD" class="rating-comment align-left float-right">
+			Add a reason or comment to your vote: <a href="#" id="clear-rate_ctl00_RateArticle_RCD" 
+				title="close">x</a><br />
+			<textarea class="RateComment" rows="5" cols="60" style="width:98%;"></textarea>
+			<span id="ctl00_RateArticle_CommentReq" class="subdue">Votes of 3 or less require a comment</span>
+		</div>
+	</div>
+</div>
+						</div>
+						</div>
+						
+
+					</form>
+
+					
+					<div style="margin:auto;width:728px;height:90px;margin-top:10px">		  
+						<div class="lqm_ad" lqm_publisher="lqm.codeproject.site"  lqm_zone="bottom" lqm_format="728x90" lqm_country='BR' lqm_loadOnView='true'  lqm_tags='VC6, VC7, VC7.1, VC8.0, WinXP, VS2005, C++, C++/CLI, C, Windows, Win32, Visual-Studio, MFC, GDI, GDI+, OpenGL, Advanced,pos_bottom'></div>
+					</div>
+					
+
+					
+					
+					<h2>Comments and Discussions</h2>
+					<a name="_comments" id="_comments">&nbsp;</a><div id="_MessageBoardctl00_MessageBoard" onclick="return SwitchMessage(event, null)">
+	<table id="ForumTable" class="box forum" cellpadding="0" cellspacing="0">
+		<tr>
+			<td><table width="100%" border="0" cellpadding="3px" cellspacing="0">
+				<tr class="forum-header1">
+					<td colspan="2" style="white-space:nowrap;"><div class="container">
+						<div class="button-newmsg float-left" onclick="FireNew(this)">
+							<img src="http://s.codeproject.com/script/Forums/Images/forum_newmsg.gif" alt="new" width="16px" height="16px" border="0" align="top" /> <a href="/script/Forums/Edit.aspx?fid=1532923&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL" name="Frm_HoverNL" title="Add a Add a Comment or Question" target="_top"><b>Add a Comment or Question</b></a>&nbsp;
+						</div><div class="admin-links float-left" style="width:60px;">
+							&nbsp;<a href="/KB/FAQs/MessageBoardsFAQ.aspx"><img src="http://s.codeproject.com/script/Forums/Images/msg_question.gif" title="FAQ" alt="FAQ" style="border-width:0;width:16px;height:16px;vertical-align:middle;" /></a>
+						</div>&nbsp;<div class="float-right">
+							<form action="/Search.aspx?fid=0" method="get" class="tight">
+								<input type="hidden" name="fid" value="1532923" /><b>Search this forum </b><input type="text" class="Frm_Input" name="qf" style="width:200px;" />&nbsp;<input type="submit" value="Go" class="button" />
+							</form>
+						</div>
+					</div></td><tr class="forum-header2">
+						<td></td><td style="width:100%;"><div style="text-align:right;">
+							<form action="/script/Forums/SetOptions.aspx?floc=%2fArticles%2f32035%2fRendering-Shapefile-in-OpenGL&amp;fid=1532923" method="get" style="margin:0;padding:0;">
+								<input type="hidden" name="fid" value="1532923" /><input type="hidden" name="currentQS" value="?floc=%2fArticles%2f32035%2fRendering-Shapefile-in-OpenGL&amp;fid=1532923" /><input type="hidden" name="floc" value="/Articles/32035/Rendering-Shapefile-in-OpenGL" /><input type="checkbox" name="prof" id="prof" style="vertical-align:middle;" /><label for="prof">Profile popups</label>&nbsp;&nbsp;&nbsp;&nbsp;Noise<select size="1" class="Frm_DropDown" name="noise">
+									<option value="1">Very High</option><option value="2">High</option><option selected value="3">Medium</option><option value="4">Low</option><option value="5">Very Low</option>
+								</select>&nbsp;&nbsp;Layout<select size="1" class="Frm_DropDown" name="view">
+									<option selected value="Quick">Normal</option><option value="Topic">Expand Posts only</option><option value="Expanded">Expand Posts & Replies</option><option value="Thread">Thread View</option><option value="Normal">No Javascript</option><option value="Preview">No JS + Preview</option>
+								</select>&nbsp;&nbsp;Per page<select size="1" class="Frm_DropDown" name="mpp">
+									<option value="10">10</option><option selected value="25">25</option><option value="50">50</option>
+								</select>&nbsp;&nbsp;&nbsp;<input type="submit" value="Update" name="SetOpt" class="button" />
+							</form>
+						</div></td>
+					</tr>
+				</tr>
+			</table></td><tr>
+				<td><a name="xx0xx"></a><table border="0" cellpadding="2px" cellspacing="0" width="100%">
+					<tr class="forum-navbar">
+						<td>&nbsp;</td><td style="text-align:right;width:50%;"> <a href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923">Refresh</a></td><td class="nav-link" style="text-align:right;white-space:nowrap;"><span class="subdue">First</span> <span class="subdue">Prev</span> <span class="subdue">Next</span></td>
+					</tr>
+				</table></td>
+			</tr><tr>
+				<td><table border="0" cellpadding="0" cellspacing="0" width="100%" class="fixed-layout blank-background">
+					<tr>
+						<td><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="5px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F3401455_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx3401455xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_question.gif" alt="Question" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="3401455" parent="0" thread="3401455" href="/Messages/3401455/GDI.aspx">GDI?</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=332980">Nite</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">19:54 12 Mar '10 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F3401455_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Hi, does anyone know of an example of doing something like this but in GDI?<br />
+&nbsp;<br />
+Thanks<br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3401455&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3401455&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=3401455" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/3401455/GDI.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=3401455&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=3401455&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF3401455" style="white-space:nowrap;"><span class="voteform" ownerid="332980" msgid="3401455" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F3416895_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="34px" class="Frm_MsgIndent"><a name="xx3416895xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_answer.gif" alt="Answer" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="3416895" parent="3401455" thread="3401455" href="/Messages/3416895/Re-GDI.aspx">Re: GDI?</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=2997187">Durga Prasad Dhulipudi</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">20:26 25 Mar '10 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F3416895_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:34px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="34px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Let me try doing it in GDI.I guess the challenge would be to divide the screen coordinates into map coordinates.Let me know whether you are looking for solution in GDI or GDI+ or WPF.<br />
+<div class="signature">Don't be ruffled if now and then you get a brush from the world; it will be over in no time, and everything will be all right.(Swami Vivekananda)</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3416895&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3416895&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=3401455" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/3416895/Re-GDI.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=3416895&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=3416895&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF3416895" style="white-space:nowrap;"><span class="voteform" ownerid="2997187" msgid="3416895" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F3417421_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="52px" class="Frm_MsgIndent"><a name="xx3417421xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="3417421" parent="3416895" thread="3401455" href="/Messages/3417421/Re-GDI.aspx">Re: GDI?</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=332980">Nite</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">5:25 26 Mar '10 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F3417421_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:52px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="52px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Thanks, I managed to get it to work with GDI, a bit slow even with buffering, specialy when trying to drag it around, but at least it works.<br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3417421&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3417421&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=3401455" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/3417421/Re-GDI.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=3417421&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=3417421&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF3417421" style="white-space:nowrap;"><span class="voteform" ownerid="332980" msgid="3417421" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F3432627_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="70px" class="Frm_MsgIndent"><a name="xx3432627xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="3432627" parent="3417421" thread="3401455" href="/Messages/3432627/Re-GDI.aspx">Re: GDI?</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=2997187">Durga Prasad Dhulipudi</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">1:04 9 Apr '10 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F3432627_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:70px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="70px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Check this tool's source code in MFC and VS6.<br />
+<a href="http://mcmcweb.er.usgs.gov/drc/dlgv32pro/">http://mcmcweb.er.usgs.gov/drc/dlgv32pro/</a>[<a href="http://mcmcweb.er.usgs.gov/drc/dlgv32pro/" target="_blank" title="New Window">^</a>]<br />
+<div class="signature">Don't be ruffled if now and then you get a brush from the world; it will be over in no time, and everything will be all right.(Swami Vivekananda)</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3432627&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3432627&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=3401455" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/3432627/Re-GDI.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=3432627&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=3432627&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF3432627" style="white-space:nowrap;"><span class="voteform" ownerid="2997187" msgid="3432627" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd LoVote Rt HdUnSel " id="F3257536_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx3257536xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="3257536" parent="0" thread="3257536" href="/Messages/3257536/no-shaders.aspx">no shaders :(</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=5620687">Adrian Pasik</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">9:42 2 Nov '09 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F3257536_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">Immediate mode (ie glVertex*)  at fall of 2009 ? <img src="/script/Forums/Images/smiley_smile.gif" align="top" alt="Smile | :)" />  <br />
+&nbsp;<br />
+<div class="ForumSig">Adrian Pasik</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3257536&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3257536&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=3257536" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/3257536/no-shaders.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=3257536&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=3257536&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF3257536" style="white-space:nowrap;">1.00/5 (1 vote) <span class="voteform" ownerid="5620687" msgid="3257536" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F3150692_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx3150692xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="3150692" parent="0" thread="3150692" href="/Messages/3150692/Use-Shapelib-On-Mac-OS-X.aspx">Use Shapelib On Mac OS X</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=6083922">andyce85</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">13:11 6 Aug '09 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F3150692_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">I would like to use this library in Mac OS X with XCode (c++ language)... Could i do it? How?<br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3150692&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3150692&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=3150692" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/3150692/Use-Shapelib-On-Mac-OS-X.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=3150692&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=3150692&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF3150692" style="white-space:nowrap;"><span class="voteform" ownerid="6083922" msgid="3150692" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd LoVote Rt HdUnSel " id="F3127696_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx3127696xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_question.gif" alt="Question" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="3127696" parent="0" thread="3127696" href="/Messages/3127696/How-to-use-this-code-in-cplusplus-builder.aspx">How to use this code in c++ builder?</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=6404491">josephspeak</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">0:14 21 Jul '09 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F3127696_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">I want to work in c++ builder? How to do it?<br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3127696&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=3127696&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=3127696" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/3127696/How-to-use-this-code-in-cplusplus-builder.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=3127696&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=3127696&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF3127696" style="white-space:nowrap;">1.00/5 (1 vote) <span class="voteform" ownerid="6404491" msgid="3127696" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F2960648_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx2960648xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_question.gif" alt="Question" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="2960648" parent="0" thread="2960648" href="/Messages/2960648/How-Draw-polygon-with-holes.aspx">How Draw polygon with holes</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=1556331">Member 1556331</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">18:17 11 Mar '09 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F2960648_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">i want to draw polygon with holes and pattern it with bitmap.how to do?<br />
+thanks<br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=2960648&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=2960648&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=2960648" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/2960648/How-Draw-polygon-with-holes.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=2960648&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=2960648&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF2960648" style="white-space:nowrap;"><span class="voteform" ownerid="1556331" msgid="2960648" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HiVote HdUnSel " id="F2998187_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="34px" class="Frm_MsgIndent"><a name="xx2998187xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_answer.gif" alt="Answer" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="2998187" parent="2960648" thread="2960648" href="/Messages/2998187/Re-How-Draw-polygon-with-holes.aspx">Re: How Draw polygon with holes</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=2997187">Durga Prasad Dhulipudi</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">20:08 8 Apr '09 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F2998187_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:34px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="34px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">This code does read polygons with holes and render them.Holes in a shapefile are have vertices in reverse order.You can have more details in shapefile format document(<a href="http://shapelib.maptools.org/dl/shapefile.pdf">http://shapelib.maptools.org/dl/shapefile.pdf</a>[<a href="http://shapelib.maptools.org/dl/shapefile.pdf" target="_blank" title="New Window">^</a>]).<br />
+&nbsp;<br />
+If a polygon has a hole in it.The vertices of the polygon are ordered in forward manner and the vertices of the hole inside it are ordered in reverse.<br />
+&nbsp;<br />
+I din't get your question on bitmap.Can you reframe as to what you want w.r.t bitmap. <br />
+&nbsp;<br />
+<div class="ForumSig">Don't be ruffled if now and then you get a brush from the world; it will be over in no time, and everything will be all right.(Swami Vivekananda)</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=2998187&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=2998187&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=2960648" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/2998187/Re-How-Draw-polygon-with-holes.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=2998187&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=2998187&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF2998187" style="white-space:nowrap;">5.00/5 (1 vote) <span class="voteform" ownerid="2997187" msgid="2998187" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F2867346_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx2867346xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="2867346" parent="0" thread="2867346" href="/Messages/2867346/whats-the-benifite.aspx">what's the benifite</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=38216">Martial Spirit</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">3:05 6 Jan '09 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F2867346_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">what's the difference if we use gdi or gdi+ to paint the vectors in shp file.<br />
+maybe opengl is platform indepnedent. <img src="/script/Forums/Images/smiley_biggrin.gif" align="top" alt="Big Grin | :-D" />  <br />
+&nbsp;<br />
+<div class="ForumSig">Best Regards</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=2867346&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=2867346&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=2867346" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/2867346/whats-the-benifite.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=2867346&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=2867346&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF2867346" style="white-space:nowrap;"><span class="voteform" ownerid="38216" msgid="2867346" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd HdUnSel " id="F2870720_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="34px" class="Frm_MsgIndent"><a name="xx2870720xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="2870720" parent="2867346" thread="2867346" href="/Messages/2870720/Re-whats-the-benifite.aspx">Re: what's the benifite</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=2997187">Durga Prasad Dhulipudi</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">2:21 8 Jan '09 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F2870720_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:34px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="34px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">You are correct.Platform independence is a concern.Besides,onboard displays in defence applications do use OpenGL for various reasons.Java or GDI+ are not certfied in those environments. <br />
+&nbsp;<br />
+<div class="ForumSig">Don't be ruffled if now and then you get a brush from the world; it will be over in no time, and everything will be all right.(Swami Vivekananda)</div><br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=2870720&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=2870720&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=2867346" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/2870720/Re-whats-the-benifite.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=2870720&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=2870720&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF2870720" style="white-space:nowrap;"><span class="voteform" ownerid="2997187" msgid="2870720" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr class="quick">
+						<td class="root msg-divide"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="1px" alt="" /></td>
+					</tr><tr class="MsgHd Rt HdUnSel " id="F2866606_h0">
+						<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr class="hover-row">
+								<td width="16px" class="Frm_MsgIndent"><a name="xx2866606xx"></a><img height="16px" width="16px" align="top" src="/script/Forums/Images/msg_general.gif" alt="General" /></td><td class="Frm_MsgSubject hover-container"><a class="message-link" name="2866606" parent="0" thread="2866606" href="/Messages/2866606/Needs-glut32-dll.aspx">Needs glut32.dll</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="http://s.codeproject.com/script/Forums/Images/pin.gif" border="0" align="top" alt="Pin" width="13px" height="12px" /></a></td><td class="Frm_MsgIcon"><img border="0" src="http://s.codeproject.com/App_Themes/Std/Img/icn-member-16.gif" title="member" alt="member" height="16px" /></td><td class="Frm_MsgAuthor"><a href="/script/Membership/View.aspx?mid=1124791">gxdata</a></td><td class="Frm_MsgDate" style="vertical-align:top;white-space:nowrap;">15:19 5 Jan '09 &nbsp;</td>
+							</tr>
+						</table></td>
+					</tr><tr id="F2866606_h1" style="display:none;">
+						<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="Frm_MsgIndent" style="width:16px;"><img src="http://s.codeproject.com/script/Forums/Images/t.gif" height="1px" width="16px" alt="" /></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+									<tr>
+										<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tr>
+												<td colspan="2">You can download the GLUT library at <a href="http://www.xmission.com/~nate/glut.html">http://www.xmission.com/~nate/glut.html</a>[<a href="http://www.xmission.com/~nate/glut.html" target="_blank" title="New Window">^</a>]<br /></td>
+											</tr><tr style="vertical-align:middle;">
+												<td class="msg-footer"><a class="button-newmsg" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=2866606&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=r" title="Reply">Reply</a>·<a class="toolbar" href="/script/Forums/Edit.aspx?fid=1532923&amp;select=2866606&amp;floc=/Articles/32035/Rendering-Shapefile-in-OpenGL&amp;action=e" title="Email">Email</a>·<a class="toolbar" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;tid=2866606" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="/Messages/2866606/Needs-glut32-dll.aspx" title="Get permanent link">Permalink</a>·<a class="toolbar" href="/script/Bookmarks/Add.aspx?obid=2866606&amp;obtid=3&amp;action=AddBookmark&amp;bio=false" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=2866606&obtid=3&action=AddBookmark&bio=false',false, this, this);">Bookmark</a></td><td class="msg-footer" style="text-align:right;"><span id="MVF2866606" style="white-space:nowrap;"><span class="voteform" ownerid="1124791" msgid="2866606" goodbad="false" gpre="" bpre="" msgtype=""></span></span></td>
+											</tr>
+										</table></td>
+									</tr>
+								</table></td>
+							</tr>
+						</table></td>
+					</tr><tr>
+						<td><img src="http://s.codeproject.com/script/Forums/Images/t.gif" border="0" width="1px" height="5px" alt="" /></td>
+					</tr>
+				</table></td>
+			</tr><tr>
+				<td><table width="100%" cellpadding="2px" cellspacing="0">
+					<tr class="forum-footer">
+						<td>Last Visit: 10:16 19 Jun '12  &nbsp; &nbsp; Last Update: 3:11 21 Jun '12 </td><td class="nav-link" style="text-align:right;white-space:nowrap;"><input id="_mbnUrl" type="hidden" value="/Articles/32035/Rendering-Shapefile-in-OpenGL?fid=1532923&amp;fr=13" /><b>1</b></td>
+					</tr>
+				</table></td>
+			</tr>
+		</tr>
+	</table>
+</div><p class="small-text"><img align="top" src="/script/Forums/Images/msg_general.gif" width="16px" height="16px" alt="General" /> General &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_news.gif" width="16px" height="16px" alt="News" /> News &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_idea.gif" width="16px" height="16px" alt="Suggestion" /> Suggestion &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_question.gif" width="16px" height="16px" alt="Question" /> Question &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_bug.gif" width="16px" height="16px" alt="Bug" /> Bug &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_answer.gif" width="16px" height="16px" alt="Answer" /> Answer &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_joke.gif" width="16px" height="16px" alt="Joke" /> Joke &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_rant.gif" width="16px" height="16px" alt="Rant" /> Rant &nbsp;&nbsp; <img align="top" src="/script/Forums/Images/msg_admin.gif" width="16px" height="16px" alt="Admin" /> Admin &nbsp;&nbsp; </p><p class="small-text">Use Ctrl+Left/Right to switch messages, Ctrl+Up/Down to switch threads, Ctrl+Shift+Left/Right to switch pages.</p>
+
+					
+					<div class="theme1-background" style="height:2px"></div>
+
+					<div class="extended tiny-text">
+						<div class="row">
+							<div class="float-left">
+								<a id="ctl00_PermaLink" href="/Articles/32035/Rendering-Shapefile-in-OpenGL">Permalink</a> | 
+								<a id="ctl00_AdvertiseLink" href="http://lakequincy.com/">Advertise </a> |
+								<a id="ctl00_PrivacyLink" href="/info/privacy.aspx">Privacy</a> |
+								<a id="ctl00_Mobile" rel="nofollow" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?display=Mobile">Mobile</a>
+								<br />
+								
+								Web01 |
+								2.5.120620.1 |
+								Last Updated 29 Dec 2008								
+							</div>
+							<div class="float-right align-right">
+								Article Copyright 2008 by Durga Prasad Dhulipudi<br />Everything else
+								Copyright &copy; <a href="mailto:webmaster@codeproject.com">CodeProject</a>, 1999-2012 <br />
+								<a id="ctl00_TermsOfUseLink" href="/info/TermsOfUse.aspx">Terms of Use</a>
+							</div>
+
+							
+
+
+<div class="page-width">
+Layout: <a id="ctl00_PageWidth_FixedT" title="Fixed width layout" rel="nofollow" class=" active" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?PageFlow=FixedWidth">fixed</a>
+|
+<a id="ctl00_PageWidth_FluidT" title="Fluid layout" rel="nofollow" href="/Articles/32035/Rendering-Shapefile-in-OpenGL?PageFlow=Fluid">fluid</a>
+</div>
+
+
+
+						</div>
+					</div>
+					
+
+				<br clear="all" />
+		
+				
+				</div>
+
+				<div id="ctl00_ContentSide" class="text-sidebar">
+					
+
+					
+
+					
+
+					
+<div class="announce">
+
+<div class="announce-content">
+
+<div>Hot News: <a id="ctl00_News_News_ctl01_Link" href="http://www.inc.com/ron-burley/4-million-complaint-call.html">The $4 Million Complaint Call</a></div>
+
+The Code Project Insider. <a id="ctl00_News_News_ctl02_Subscribe" href="/Feature/Insider/">Free each morning.</a>
+</div>
+</div>
+
+						
+					<div style="width:160px;margin: 10px 0;">
+						<div class="lqm_ad" lqm_publisher="lqm.codeproject.site"  lqm_zone="ros" lqm_format="160x600" lqm_country='BR' lqm_tags='VC6, VC7, VC7.1, VC8.0, WinXP, VS2005, C++, C++/CLI, C, Windows, Win32, Visual-Studio, MFC, GDI, GDI+, OpenGL, Advanced,rating3'></div>
+					</div>
+
+					
+	<div class="announce">
+	<div id="ctl00_RelatedArticles_RelatedResults_ctl00_header" class="announce-header">Related Articles</div>
+	<div class="announce-content">	
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl02_Link" class="title" href="/KB/directx/SimulationRecording.aspx">Recording DirectX and OpenGL Rendered Animations</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl03_Link" class="title" href="/KB/openGL/freetype.aspx">Rendering FreeType/2 with OpenGL</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl04_Link" class="title" href="/KB/Blogs/OpenGL_ES.aspx">OpenGL ES: Batch Rendering on the iPhone</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl05_Link" class="title" href="/KB/openGL/oglwiz.aspx">OpenGL Win32 AppWizard</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl06_Link" class="title" href="/KB/openGL/sharpgl.aspx">SharpGL: A C# OpenGL Class Library</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl07_Link" class="title" href="/KB/openGL/opengl_activex.aspx">An OpenGL ActiveX Control Developed with MFC</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl08_Link" class="title" href="/KB/openGL/Outline_Mode.aspx">Generating Outlines in OpenGL</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl09_Link" class="title" href="/KB/openGL/openmaze.aspx">Random 3D Mazes in OpenGL</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl10_Link" class="title" href="/KB/WPF/openglinwpf.aspx">Using OpenGL in a WPF Application</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl11_Link" class="title" href="/KB/openGL/jxglTracker.aspx">Rubber-Banding with OpenGL</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl12_Link" class="title" href="/KB/openGL/GLView.aspx">2D Drawing with an OpenGL Control</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl13_Link" class="title" href="/KB/android/FountainGLWalkthrough.aspx">Fountain OpenGL Application Walkthrough</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl14_Link" class="title" href="/KB/iPhone/iPhoneFreeType.aspx">FreeType on OpenGL ES (iPhone)</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl15_Link" class="title" href="/KB/openGL/glexport.aspx">Achieving PostScript and Wmf outputs for OpenGL</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl16_Link" class="title" href="/KB/openGL/openglmousesellection.aspx">Mouse Selection in OpenGL Scene</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl17_Link" class="title" href="/KB/openGL/FirefoxOpenGL.aspx">An OpenGL Sample as Firefox Plugin</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl18_Link" class="title" href="/KB/openGL/OPENGLTG.aspx">OpenGL Terrain Generation - An Introduction</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl19_Link" class="title" href="/KB/openGL/OpenGL_Geometric.aspx">OpenGL Geometric Primitives</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl20_Link" class="title" href="/KB/openGL/glenabledview.aspx">CGLEnabledView - An MDI view class supporting OpenGL</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl21_Link" class="title" href="/KB/openGL/wrl_viewer.aspx">A small VRML viewer using OpenGL and MFC</a>
+		
+	</div>
+	
+	</div>
+	</div>
+	
+
+
+					
+
+				</div>
+
+			</div>
+			
+
+		</div>
+		
+
+	</div>
+</div>
+
+
+<div style="display:none;" id="lqm_AdTable">
+	
+</div>
+
+<script type="text/javascript" language="Javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script><script type='text/javascript'>//<![CDATA[
+if (typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='/script/JS/jquery-1.6.2.min.js' type='text/javascript' %3E%3C/script%3E"));
+}//]]></script>
+<script type="text/javascript" language="Javascript" src="http://s.codeproject.com/script/Articles/JS/article.min.js?dt=2.5.120620.1"></script>
+<script type="text/javascript" language="Javascript" src="http://s.codeproject.com/script/JS/navbar.min.js?dt=2.5.120620.1"></script>
+<script type="text/javascript" language="Javascript" src="/Script/JS/m.min.js?dt=2.5.120620.1"></script>
+<script type="text/javascript" language="Javascript">//<![CDATA[
+var socialLinks = new social();
+socialLinks.PlaceholderId="ATD";socialLinks.ObjectId=32035;
+socialLinks.ObjectTypeId=2;
+socialLinks.addtoMethod=1;
+socialLinks.Horizontal=false;
+socialLinks.Showname=true;
+socialLinks.setupLinks("socialLinks", escape(document.location.href),escape(document.title), 100, 0, "small-text Bold", "AddTo");
+socialLinks.setupMenu();
+if($.LqmAds)$.LqmAds();
+var oSrchFlt = false, oSrchBox=false,srchBoxFoc=false;
+$(document).ready(function() {
+ if(InitWatermark)InitWatermark('sb_tb', 'Search site');
+ var sbar = $('#sb_tb'); 
+ var sfilter = $('#SearchFilter');
+ if (sbar && sfilter) {
+  sfilter.removeClass('popup'); sfilter.hide();
+  sbar.blur(function() { if (!oSrchFlt)sfilter.hide();srchBoxFoc=false; });
+  sbar.focus(function() { oSrchFlt=false;srchBoxFoc=true;sfilter.show(); });
+  sbar.mouseleave(function() { oSrchBox=false; });
+  sbar.mouseover(function() { oSrchBox=true; });
+  sfilter.mouseleave(function() { oSrchFlt=false; if (!srchBoxFoc&&!oSrchBox)sfilter.hide();});
+  sfilter.mouseover(function() { oSrchFlt=true; });
+ }
+});
+$(document).ready(function() { anchorAnimate(); });
+$("#ctl00_RateArticle_RateItemWrapper").removeClass("container-rating");$('#clear-rate_ctl00_RateArticle_RCD').click(function () { $('#ctl00_RateArticle_RCD').hide(); return false;});
+function PostBack_ctl00_RateArticle_RateItemWrapper() {
+  return rateItem(32035,2,1,true,true,3);
+}
+function ChkRtctl00_RateArticle(val, objId) {if (val<=3||true) {
+$('div[name=RateItem_' + objId + '] .rating-comment').css("display","");}
+else $('div[name=RateItem_' + objId + '] .rating-comment').css("display","none");}
+
+
+//]]>
+</script>
+
+</body>
+</html>
