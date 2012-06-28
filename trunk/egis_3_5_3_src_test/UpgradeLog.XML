@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="EasyGISDesktop">
+</Property><Property Name="Solution File" Value="C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src_test\EasyGISDesktop.sln">
+</Property><Property Name="Date" Value="quinta-feira, 28 de junho de 2012">
+</Property><Property Name="Time" Value="16:02">
+</Property></Properties><Event ErrorLevel="0" Project="egis" Source="ShapeFileTools\egis.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="egis" Source="ShapeFileTools\egis.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="EGIS.ShapeFileLib" Source="EGIS.ShapeFileLib\EGIS.ShapeFileLib.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="EGIS.ShapeFileLib" Source="EGIS.ShapeFileLib\EGIS.ShapeFileLib.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="EGIS.Controls" Source="EGIS.Controls\EGIS.Controls.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="EGIS.Controls" Source="EGIS.Controls\EGIS.Controls.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="EasyGISDesktop.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="EasyGISDesktop.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="egis" Source="ShapeFileTools\egis.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="EGIS.ShapeFileLib" Source="EGIS.ShapeFileLib\EGIS.ShapeFileLib.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="EGIS.Controls" Source="EGIS.Controls\EGIS.Controls.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
