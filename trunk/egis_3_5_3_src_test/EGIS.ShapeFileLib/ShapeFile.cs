@@ -14497,7 +14497,7 @@ namespace EGIS.ShapeFileLib
 
         class NativeGeomUtilWin32
         {
-            [DllImport("geomutil_lib.dll")]
+            [DllImport("geomutil_lib.dll")]  // Autodesk Revit 
             internal static unsafe extern int SimplifyDouglasPeuckerInt(int* input, int inputCount, int tolerance, int* output, ref int outputCount);
 
             [DllImport("geomutil_lib.dll")]
