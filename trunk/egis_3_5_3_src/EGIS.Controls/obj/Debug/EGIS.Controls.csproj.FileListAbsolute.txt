@@ -1,0 +1,15 @@
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\bin\Debug\geomutil_libx64.dll
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\bin\Debug\geomutil_lib.dll
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\bin\Debug\EGIS.Controls.XML
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\bin\Debug\EGIS.Controls.dll
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\bin\Debug\EGIS.Controls.pdb
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\bin\Debug\EGIS.ShapeFileLib.dll
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\bin\Debug\EGIS.ShapeFileLib.pdb
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\bin\Debug\EGIS.ShapeFileLib.xml
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\obj\Debug\ResolveAssemblyReference.cache
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\obj\Debug\EGIS.Controls.Properties.Resources.resources
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\obj\Debug\EGIS.Controls.SFMap.resources
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\obj\Debug\EGIS.Controls.ShapeFileListControl.resources
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\obj\Debug\EGIS.Controls.csproj.GenerateResource.Cache
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\obj\Debug\EGIS.Controls.dll
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\egis_dt_3_5_3\egis_3_5_3_src\EGIS.Controls\obj\Debug\EGIS.Controls.pdb
