@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="HelloMobileSDK">
+</Property><Property Name="Solution File" Value="C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\ArcGISDesktop\AS15764_HelloMobile\HelloMobileSDK.sln">
+</Property><Property Name="Date" Value="segunda-feira, 18 de junho de 2012">
+</Property><Property Name="Time" Value="16:41">
+</Property></Properties><Event ErrorLevel="0" Project="HelloMobileSDK" Source="HelloMobileSDK\HelloMobileSDK.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="HelloMobileSDK" Source="HelloMobileSDK\HelloMobileSDK.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="HelloMobileSDK.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="HelloMobileSDK.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="HelloMobileSDK" Source="HelloMobileSDK\Form1.resx" Description="File converted successfully">
+</Event><Event ErrorLevel="3" Project="HelloMobileSDK" Source="HelloMobileSDK\Form1.resx" Description="Converted">
+</Event><Event ErrorLevel="0" Project="HelloMobileSDK" Source="HelloMobileSDK\Properties\Resources.resx" Description="File converted successfully">
+</Event><Event ErrorLevel="3" Project="HelloMobileSDK" Source="HelloMobileSDK\Properties\Resources.resx" Description="Converted">
+</Event><Event ErrorLevel="0" Project="HelloMobileSDK" Source="HelloMobileSDK\HelloMobileSDK.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
