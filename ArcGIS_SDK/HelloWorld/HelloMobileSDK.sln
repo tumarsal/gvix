@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMobileSDK", "HelloMobileSDK\HelloMobileSDK.csproj", "{2FCE5EA7-2106-4D97-98B3-0085EF48F5D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteWinCE", "..\TesteWinCE\TesteWinCE\TesteWinCE.csproj", "{8086E41C-4C4D-4937-A520-887B18D2734E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FCE5EA7-2106-4D97-98B3-0085EF48F5D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FCE5EA7-2106-4D97-98B3-0085EF48F5D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FCE5EA7-2106-4D97-98B3-0085EF48F5D0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2FCE5EA7-2106-4D97-98B3-0085EF48F5D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FCE5EA7-2106-4D97-98B3-0085EF48F5D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FCE5EA7-2106-4D97-98B3-0085EF48F5D0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8086E41C-4C4D-4937-A520-887B18D2734E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8086E41C-4C4D-4937-A520-887B18D2734E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8086E41C-4C4D-4937-A520-887B18D2734E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8086E41C-4C4D-4937-A520-887B18D2734E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8086E41C-4C4D-4937-A520-887B18D2734E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8086E41C-4C4D-4937-A520-887B18D2734E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

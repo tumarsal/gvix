@@ -1,0 +1,8 @@
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\ArcGISDesktop\AS15764_HelloMobile\HelloMobileSDK\obj\Debug\ResolveAssemblyReference.cache
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\ArcGISDesktop\AS15764_HelloMobile\HelloMobileSDK\obj\Debug\HelloMobileSDK.Form1.resources
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\ArcGISDesktop\AS15764_HelloMobile\HelloMobileSDK\obj\Debug\HelloMobileSDK.Properties.Resources.resources
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\ArcGISDesktop\AS15764_HelloMobile\HelloMobileSDK\obj\Debug\HelloMobileSDK.csproj.GenerateResource.Cache
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\ArcGISDesktop\AS15764_HelloMobile\HelloMobileSDK\bin\Debug\HelloMobileSDK.exe
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\ArcGISDesktop\AS15764_HelloMobile\HelloMobileSDK\bin\Debug\HelloMobileSDK.pdb
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\ArcGISDesktop\AS15764_HelloMobile\HelloMobileSDK\obj\Debug\HelloMobileSDK.exe
+C:\proj\Lifeware\clientes\Vix\implementacao\Arquivos SHP ArcGis\ArcGISDesktop\AS15764_HelloMobile\HelloMobileSDK\obj\Debug\HelloMobileSDK.pdb
